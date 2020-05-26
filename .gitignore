@@ -1,0 +1,14 @@
+## .gitignore for eclipse
+.classpath  
+.project  
+.settings/
+target/
+.metadata
+*.class
+# for log
+/logs
+*.log
+*.log.*
+.springBeans
+*.iml
+.idea
