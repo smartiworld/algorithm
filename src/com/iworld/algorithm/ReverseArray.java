@@ -7,4 +7,8 @@ package com.iworld.algorithm;
  * @Date 2020-05-25 18:06
  */
 public class ReverseArray {
+
+    public static void main(String[] args) {
+        
+    }
 }
