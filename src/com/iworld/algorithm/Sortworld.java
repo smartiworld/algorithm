@@ -2,7 +2,7 @@ package com.iworld.algorithm;
 
 /**
  * 排序
- * 使用大小排序数组，数组中每个数字间想回比较，数值大的在数值大的当前位置加一
+ * 使用大小排序数组，
  * @Autor iworld
  * @Date 2020-05-09 14:32
  */
@@ -22,6 +22,12 @@ public class Sortworld {
         System.out.println("minfloat==" + Float.MIN_VALUE);
     }
 
+    /***
+     * 使用一个数组记录当前位置的和其他位置对比结果，如果大于其他值则加一,反之在大的数字位置增加一。
+     * 数组中每个数字间想回比较，数值大的在数值大的当前位置加一
+     * @param array
+     * @return
+     */
     public int[] guestSortArray(int[] array){
         int[] counter = new int[array.length];
         for (int i = 0; i <= array.length - 2; i++){

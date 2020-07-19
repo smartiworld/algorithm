@@ -12,3 +12,4 @@ target/
 .springBeans
 *.iml
 .idea
+out/*
