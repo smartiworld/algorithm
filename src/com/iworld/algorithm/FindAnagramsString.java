@@ -52,6 +52,8 @@ public class FindAnagramsString {
     }
     /**
      * 滑动窗口
+     * 窗口大小为匹配子串的长度 从左开始获取目标串位置字符，当right - left等于子串长度时，遍历子串数组，看当前获取目标串的中的字符
+     * 是否都在子串数组中，如果存在，表示匹配成功，记录当前位置，然后继续right和left下标右移，目标串子串的数组将left前位置字符移除数组
      * @param s
      * @param t
      * @return

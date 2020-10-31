@@ -19,7 +19,9 @@ public class FindMixOrderSubStr {
     public static void main(String[] args) {
         FindMixOrderSubStr matchMixOrderSubStr = new FindMixOrderSubStr();
         String minSubStr = matchMixOrderSubStr.minSubStrOpt("ADOBEACBCODEBANCBC", "ABC");
+        String minSubStr2 = matchMixOrderSubStr.minSubStrOptSimLop("ADOBEACBCODEBANCBAC", "ABC");
         System.out.println("minSubStr==" + minSubStr);
+        System.out.println("minSubStr2==" + minSubStr2);
     }
 
     /**
@@ -133,6 +135,8 @@ public class FindMixOrderSubStr {
 
     /**
      * 优化循环
+     * ADOBEACBCODEBANCBAC
+     * 19-17
      * @param s 目标字符串
      * @param t 子字符串
      * @return 返回目标字符串包含子字符串的最小字符串
@@ -141,22 +145,39 @@ public class FindMixOrderSubStr {
         String result = "";
         char[] cs = s.toCharArray();
         char[] ct = t.toCharArray();
+        //当前元素的位置数组
         int[] minLenPositions = new int[s.length()];
-        int tp = 0;
-        int start = 0;
+        int tp = 0;    //记录从当前位置已匹配多少位子串
+        int start = 0; //记录匹配到子串第一位的时候 目标串位置
+        int nextLopPos = -1;//记录本次匹配已不在第一位 然后又匹配到第一位字符记录当前位置
+        //从左遍历字符串
         for (int i = 0; i <= s.length() - t.length() + tp; i++) {
             char ci = cs[i];
             char ctp = ct[tp];
+            //当前循环匹配不在第一位，又匹配到第一位的字符后，记录当前位置,下一次循环直接从当前记录位置开始
             if(tp > 0 && ct[0] == ci){
-                start = i;
+                nextLopPos = i;
                 continue ;
             }
+            //如果遍历到当前字符和要匹配字符相等
             if(ci == ctp){
+                //如果当前匹配的是第一位
                 if(tp == 0){
                     start = i;
                 }
+                //如果已经匹配到最后一位
                 if(tp == t.length() - 1){
+                    //当前位置数组保存 匹配到的数组长度
+                    //如果当前位置没有匹配到字符，则直接记录当前位置到匹配首位字符的长度，否则则记录长度小的
                     minLenPositions[i] = minLenPositions[i] == 0? i - start + 1 : Math.min(minLenPositions[i], i - start + 1);
+                    if(minLenPositions[i] == t.length()){
+                        break;
+                    }
+                    if(nextLopPos > 0 && s.length() - nextLopPos < t.length()){
+                        i = nextLopPos -1;
+                    }else{
+                        i = start;
+                    }
                     tp = 0;
                     start = 0;
                     continue;
