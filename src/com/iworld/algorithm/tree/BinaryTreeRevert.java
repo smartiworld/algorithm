@@ -1,6 +1,5 @@
 package com.iworld.algorithm.tree;
 
-import javax.swing.tree.TreeNode;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -9,12 +8,13 @@ import java.util.Stack;
  * @author gq.cai
  * @version 1.0
  * @description 二叉树反转 左右孩子反转
+ * https://leetcode-cn.com/problems/invert-binary-tree/
  * @date 2022/3/15 19:42
  */
 public class BinaryTreeRevert {
     
     /**
-     * 递归的方式
+     * 递归的方式 先交换左右子树 然后继续递归处理左树 完成后递归处理右树
      * @param root
      * @return
      */
@@ -23,15 +23,18 @@ public class BinaryTreeRevert {
             return null;
         }
         CommonBinaryTree<String> left = root.left;
+        // 交换左右子树
         root.left = root.right;
         root.right = left;
+        // 递归处理左树
         invertTree(root.left);
+        // 递归处理右树
         invertTree(root.right);
         return root;
     }
     
     /**
-     * 深度优先遍历的方式
+     * 深度优先遍历的方式 先交换左右子树 如果左右子树不为空 继续加入栈
      * @param root
      * @return
      */
@@ -57,7 +60,7 @@ public class BinaryTreeRevert {
     }
     
     /**
-     * 广度优先遍历的方式
+     * 广度优先遍历的方式 先交换左右子树 如果左右子树不为空 继续加入队列
      * @param root
      * @return
      */
@@ -70,6 +73,7 @@ public class BinaryTreeRevert {
         while (!queue.isEmpty()) {
             CommonBinaryTree<String> poll = queue.poll();
             CommonBinaryTree<String> left = poll.left;
+            // 交换左右子树
             poll.left = poll.right;
             poll.right = left;
             if (poll.left != null) {
