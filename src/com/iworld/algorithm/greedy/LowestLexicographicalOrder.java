@@ -20,6 +20,9 @@ public class LowestLexicographicalOrder {
      * @return
      */
     public String lowestString(String[] strs) {
+        if (strs == null || strs.length < 1) {
+            return null;
+        }
         Set<Integer> use = new HashSet<>();
         List<String> all = new ArrayList<>();
         arrangementString(all, use, "", strs);
