@@ -28,7 +28,7 @@ public class GraphPrim {
         Set<Graph.Node<String>> nodes = new HashSet<>();
         // 边的小根堆
         PriorityQueue<Graph.Edge> priorityQueue = new PriorityQueue<>(new EdgeComparator());
-        // 使用for循环 解决森林问题 如果非森林 直接选择一个点直接可用
+        // 使用for循环 解决森林问题 如果非森林 直接选择一个点直接可用  或者直接break
         for (Graph.Node<String> node : graph.nodeMap.values()) {
             // 找出一个点
             if (!nodes.contains(node)) {
@@ -49,6 +49,7 @@ public class GraphPrim {
                     }
                 }
             }
+            break;
         }
         return result;
     }

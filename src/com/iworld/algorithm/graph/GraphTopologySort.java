@@ -11,6 +11,9 @@ import java.util.Queue;
  * @author gq.cai
  * @version 1.0
  * @description 图的拓扑排序
+ * 无环图
+ * 1.将图点的节点和入度放map中 将入度为0的节点放入队列中
+ * 2.弹出队列中入度为0的节点，将弹出节点出度节点的入度分别减1，此时如果有入度为0的节点 则放入队列
  * @date 2022/4/15 22:41
  */
 public class GraphTopologySort {
