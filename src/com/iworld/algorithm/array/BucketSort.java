@@ -1,6 +1,5 @@
 package com.iworld.algorithm.array;
 
-import com.iworld.algorithm.Sortworld;
 import com.iworld.algorithm.util.ArrayUtil;
 
 /**
@@ -53,6 +52,12 @@ public class BucketSort {
      * 将help数组中数重新写回原数组
      * 时间复杂度 O(N*loga(max)) 近似O(N)
      * 空间复杂度 O(N)
+     * 1.需要获取数组中最高位数数字 需要根据位数进行排序 每次遍历排序一个位数的数组
+     * 2.统计当前位数数字在数组中数字出现的频率 记录到count数组
+     * 3.然后将count当前位置和前位置数相加 表示小于等于当前数的个数 以便向help数组回放，count值即为当前数需要放的位置，
+     *   放后位置-1，表示数组中还剩多少小于当前位数的数
+     * 4.将help刷回原数组
+     * 5.知道所有位数跑完
      * @param arr   排序数组
      * @param left  左边界
      * @param right 右边界
@@ -63,7 +68,9 @@ public class BucketSort {
         // 每次刷新数据回原数组
         int[] help = new int[arr.length];
         // 根据位数遍历
+        // 每次遍历对当前位数进行排序 位数遍历好后 所有都已排序
         for (int i = 1; i <= maxDigit; i++) {
+            // count下标为进制数 元素内个数记录当前数出现了多少次
             int[] count = new int[10];
             // 遍历数组开始结束位置
             for (int j = left; j <= right; j++) {
@@ -74,10 +81,14 @@ public class BucketSort {
                 count[digitNum] ++;
             }
             // 将count数组 重新赋值 当前位置数修改为当前位置数加当前位置前一位置数
+            // count中记录的为当前下标的值出现的次数 需要根据下标放回help数组 所以后面值需要加前面值出现次数
+            // count中值 表示小于等于当前下标的个数
             for (int j = 1; j < count.length; j++) {
                 count[j] = count[j] + count[j - 1];
             }
             // 从尾遍历原数组
+            // 因为原算法中时从左向右遍历  相同位数的数字 右边的后出 放到help数组后面 前面的放help前
+            // 所需此时需要从右向左 可以保证相同位数数字可以放help后面
             for (int j = arr.length - 1; j >= 0; j--) {
                 // 获取数组当前位置数字当前位数 数字
                 int digitNum = getDigitNum(arr[j], i);
@@ -85,6 +96,7 @@ public class BucketSort {
                 help[count[digitNum] = (count[digitNum] - 1)] = arr[j];
             }
             // 将help数组重新刷回原数组
+            // 此时位数已经有序 刷回原数组 接着下次对更高一位进行排序
             for (int j = 0; j < help.length; j++) {
                 arr[j] = help[j];
             }
@@ -150,19 +162,5 @@ public class BucketSort {
         }
         return digit;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
