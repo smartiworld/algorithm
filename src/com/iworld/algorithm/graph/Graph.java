@@ -58,6 +58,13 @@ public class Graph<V> {
             this.nexts = new ArrayList<>();
             this.edges = new ArrayList<>();
         }
+    
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "value=" + value +
+                    '}';
+        }
     }
     
     /**
@@ -82,6 +89,14 @@ public class Graph<V> {
             this.to = to;
             this.weight = weight;
         }
-        
+    
+        @Override
+        public String toString() {
+            return "Edge{" +
+                    "from=" + from.value +
+                    ", to=" + to.value +
+                    ", weight=" + weight +
+                    '}';
+        }
     }
 }

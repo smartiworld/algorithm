@@ -11,9 +11,9 @@ public class GraphGenerator {
     public static Graph<Integer> createGraph(int[][] matrix) {
         Graph<Integer> graph = new Graph<>();
         for (int i = 0; i < matrix.length; i++) {
-            int from = matrix[i][1];
-            int to = matrix[i][2];
-            int weight = matrix[i][3];
+            int from = matrix[i][0];
+            int to = matrix[i][1];
+            int weight = matrix[i][2];
             // 构造进出点
             if (!graph.nodeMap.containsKey(from)) {
                 graph.nodeMap.put(from, new Graph.Node<>(from));
