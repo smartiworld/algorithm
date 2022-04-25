@@ -8,7 +8,7 @@ import java.util.Stack;
 /**
  * @author gq.cai
  * @version 1.0
- * @description 并查即
+ * @description 并查集
  * 在并查集中开始认为每一个样本都单独存在集合中，
  * boolean isSameSet(v,x) 查询样本v和x是否同一个集合
  * void union(x, y)将x和y所在集合合并成一个集合

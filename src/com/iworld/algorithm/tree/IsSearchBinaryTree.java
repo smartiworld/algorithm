@@ -6,12 +6,15 @@ import java.util.ArrayList;
  * @author gq.cai
  * @version 1.0
  * @description 二叉搜索树 右数所有节点大于当前父节点  左数所有节点小于当前父节点
+ * 拆分成小的树处理 如果每个子树都是二叉搜索树 整棵树就为二叉搜索树
+ * 如果有一颗子树不为 二叉搜索树 此树则不是二叉搜索树
  * @date 2022/3/10 17:49
  */
-public class SearchBinaryTree {
+public class IsSearchBinaryTree {
     
     /**
      * 判断当前节点数是否是二叉搜索树
+     *
      * @param head
      * @return
      */
@@ -38,6 +41,7 @@ public class SearchBinaryTree {
         if (leftInfo.isBST && rightInfo.isBST && head.value > leftInfo.max && head.value < rightInfo.min) {
             isBST = true;
         }
+        // 此时认为当前树就是二叉搜索树 最大值则为右树最大值 最小值左树最小值
         int min = leftInfo.min == Integer.MAX_VALUE ? head.value : Math.min(leftInfo.min, head.value);
         int max = rightInfo.max == Integer.MIN_VALUE ? head.value : Math.max(rightInfo.max, head.value);
         return new TreeInfo(isBST, min, max);
