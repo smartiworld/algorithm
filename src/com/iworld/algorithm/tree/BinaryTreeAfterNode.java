@@ -10,7 +10,7 @@ package com.iworld.algorithm.tree;
 public class BinaryTreeAfterNode {
     
     /**
-     * 如果当前节点有右孩子 则后继节点为当前节点右孩子
+     * 如果当前节点有右孩子 则后继节点为当前节点右孩子最左孩子
      * 如果当前节点为左孩子则后继节点为当前节点的父节点
      * 查找当前节点的父节点 当被查找父节点为左孩子时，此时当前查找到的父节点的父节点为当前节点后继节点
      * @param head
@@ -22,16 +22,26 @@ public class BinaryTreeAfterNode {
         }
         // 如果当前节点有右孩子 则后继节点为当前节点右孩子
         if (head.right != null) {
-            return head.right;
+            return getLastLeftNode(head.right);
         }
         //如果当前节点为左子树 后继节点则为当前节点的父节点
-        InnerBinaryTree parent = head.parent;
-        if (head == parent.left){
-            return parent;
-        }
+        InnerBinaryTree parent = head;
         // 查找当前节点的父节点 当被查找父节点为左孩子时，此时当前查找到的父节点的父节点为当前节点后继节点
         InnerBinaryTree nextNode = getRightNextNode(parent);
         return nextNode;
+    }
+    
+    /**
+     * 获取一个节点的最左节点
+     * @param right
+     * @return
+     */
+    private static InnerBinaryTree getLastLeftNode(InnerBinaryTree right) {
+        InnerBinaryTree left = right;
+        while (left.left != null) {
+            left = left.left;
+        }
+        return left;
     }
     
     /**
@@ -69,7 +79,13 @@ public class BinaryTreeAfterNode {
         node3.left = node6;
         node3.right = node7;
         node6.parent = node7.parent = node3;
-        InnerBinaryTree nextNode = getNextNode(node2);
+        InnerBinaryTree node9 = new InnerBinaryTree(9);
+        InnerBinaryTree node10 = new InnerBinaryTree(10);
+        node4.right = node9;
+        node9.parent = node4;
+        node5.right = node10;
+        node10.parent = node5;
+        InnerBinaryTree nextNode = getNextNode(node10);
         System.out.println(nextNode);
     }
 

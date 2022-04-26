@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * 如果有一颗子树不为 二叉搜索树 此树则不是二叉搜索树
  * @date 2022/3/10 17:49
  */
-public class IsSearchBinaryTree {
+public class IsBinarySearchTree {
     
     /**
      * 判断当前节点数是否是二叉搜索树
