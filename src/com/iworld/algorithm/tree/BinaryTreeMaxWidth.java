@@ -51,6 +51,7 @@ public class BinaryTreeMaxWidth {
      * @return
      */
     public static int getMaxTreeWidthUseMap(CommonBinaryTree<Integer> head) {
+        // 最大宽度
         int maxWidth = 0;
         if (head != null) {
             Queue<CommonBinaryTree<Integer>> queue = new LinkedList<>();
@@ -58,7 +59,9 @@ public class BinaryTreeMaxWidth {
             // 记录当前节点层数
             Map<CommonBinaryTree<Integer>, Integer> map = new HashMap();
             map.put(head, 1);
+            // 当前层的宽度
             int curWidth = 0;
+            // 上一层是多少层了
             int preLeve = 1;
             while (!queue.isEmpty()) {
                 CommonBinaryTree<Integer> poll = queue.poll();
@@ -71,14 +74,19 @@ public class BinaryTreeMaxWidth {
                     map.put(poll.right, curLeve + 1);
                     queue.offer(poll.right);
                 }
+                // 当前没有切换层 当前宽度++
                 if (preLeve == curLeve) {
                     curWidth ++;
                 } else {
+                    // 切换层表示上一层已执行完毕 计算最大宽度
                     maxWidth = Math.max(maxWidth, curWidth);
+                    // 上一层来到当前层
                     preLeve = curLeve;
+                    // 初始化当前层宽度
                     curWidth = 1;
                 }
             }
+            // 切换层数的时候进行结算 上面循环执行完毕后 最后一层还没有结算
             maxWidth = Math.max(maxWidth, curWidth);
         }
         return maxWidth;
@@ -97,7 +105,7 @@ public class BinaryTreeMaxWidth {
             int curWidth = 0;
             // 当前层数节点
             CommonBinaryTree<Integer> curTree = head;
-            // 下层最后节点
+            // 下层最右节点 子节点向右只要有节点就给当前值
             CommonBinaryTree<Integer> nextEndTree = null;
             while (!queue.isEmpty()) {
                 CommonBinaryTree<Integer> poll = queue.poll();
@@ -111,8 +119,10 @@ public class BinaryTreeMaxWidth {
                 }
                 curWidth ++;
                 // 当前节点走到当前节点最后一个节点位置，将下层最后节点赋值到当前节点，重置当前层宽度，计算当前层最大宽度
+                // 每走完一层结算一层
                 if (curTree == poll) {
                     maxWidth = Math.max(maxWidth, curWidth);
+                    // 当前层走完后将下层最右节点赋值当前节点
                     curTree = nextEndTree;
                     curWidth = 0;
                 }
