@@ -26,14 +26,14 @@ public class MyBinaryTreeOperate<E> {
     public MyBinaryTreeOperate() {
     }
     
-    public MyBinaryTreeOperate(Comparator comparator) {
+    public MyBinaryTreeOperate(Comparator<E> comparator) {
         this.comparator = comparator;
     }
     
     public static class InnerBinaryTree<E> {
         E value;
-        InnerBinaryTree left;
-        InnerBinaryTree right;
+        InnerBinaryTree<E> left;
+        InnerBinaryTree<E> right;
     }
     
     /**
