@@ -30,10 +30,10 @@ public class BinaryTreeNearParentNode {
         chileParentMap.put(root, null);
         fillParent(root, chileParentMap);
         CommonBinaryTree<Integer> t1Parent = t1;
-        // 存放t1父节点的set集合
+        // 存放t1及t1的父节点的set集合
         Set<CommonBinaryTree<Integer>> t1ParentSet = new HashSet<>();
-        while (chileParentMap.get(t1Parent) != null) {
-            t1ParentSet.add(chileParentMap.get(t1Parent));
+        while (t1Parent != null) {
+            t1ParentSet.add(t1Parent);
             t1Parent = chileParentMap.get(t1Parent);
         }
         CommonBinaryTree<Integer> t2Parent = t2;
@@ -159,9 +159,9 @@ public class BinaryTreeNearParentNode {
         //CommonBinaryTree<Integer> tree13 = new CommonBinaryTree<>(13);
         //tree7.right = tree13;
         BinaryTreeNearParentNode binaryTreeNearParentNode = new BinaryTreeNearParentNode();
-        CommonBinaryTree<Integer> towNodeParentUseMap = findTowNodeParentUseMap(head, tree8, head);
+        CommonBinaryTree<Integer> towNodeParentUseMap = findTowNodeParentUseMap(head, tree4, tree9);
         System.out.println(towNodeParentUseMap);
-        CommonBinaryTree<Integer> towNodeParent = binaryTreeNearParentNode.findTowNodeParent(head, tree8, head);
+        CommonBinaryTree<Integer> towNodeParent = binaryTreeNearParentNode.findTowNodeParent(head, tree4, tree9);
         System.out.println(towNodeParent);
     }
 }
