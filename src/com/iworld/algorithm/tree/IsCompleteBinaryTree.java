@@ -1,5 +1,8 @@
 package com.iworld.algorithm.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * @author gq.cai
  * @version 1.0
@@ -18,17 +21,18 @@ public class IsCompleteBinaryTree {
         root.right = node3;
         CommonBinaryTree<Integer> node4 = new CommonBinaryTree<Integer>(4);
         CommonBinaryTree<Integer> node5 = new CommonBinaryTree<Integer>(5);
-        node2.left = node4;
+        //node2.left = node4;
         node2.right = node5;
         CommonBinaryTree<Integer> node6 = new CommonBinaryTree<Integer>(6);
         CommonBinaryTree<Integer> node7 = new CommonBinaryTree<Integer>(7);
         node3.left = node6;
         node3.right = node7;
         System.out.println(isComplete2(root));
+        System.out.println(isComplete3(root));
     }
     
     public static boolean isComplete2(CommonBinaryTree<Integer> root) {
-        if (root == null) {
+            if (root == null) {
             return true;
         }
         return process(root).isCBT;
@@ -56,13 +60,39 @@ public class IsCompleteBinaryTree {
                 isCBT = true;
             }
             // 左树满 右树完全 高度相等
-            if (leftTreeInfo.isFBT && rightTreeInfo.isCBT && leftTreeInfo.height == rightTreeInfo.height + 1) {
+            if (leftTreeInfo.isFBT && rightTreeInfo.isCBT && leftTreeInfo.height == rightTreeInfo.height) {
                 isCBT = true;
             }
         }
         return new TreeInfo2(isFBT, isCBT, height);
     }
     
+    public static boolean isComplete3(CommonBinaryTree<Integer> root) {
+        if (root == null) {
+            return true;
+        }
+        Queue<CommonBinaryTree<Integer>> queue = new LinkedList<>();
+        queue.add(root);
+        boolean leafNode = false;
+        while (!queue.isEmpty()) {
+            CommonBinaryTree<Integer> poll = queue.poll();
+            // 1.有右无左
+            // 2.当最后一个节点左右不全时 下一个节点还有左孩子或者右孩子的时候
+            if ((poll.right != null && poll.left == null) ||
+                    leafNode && (poll.left != null || poll.right != null)) {
+                return false;
+            }
+            if (poll.left != null) {
+                queue.add(poll.left);
+            }
+            if (poll.right != null) {
+                queue.add(poll.right);
+            } else {
+                leafNode = true;
+            }
+        }
+        return true;
+    }
     
     static class TreeInfo {
         boolean isFBT;
