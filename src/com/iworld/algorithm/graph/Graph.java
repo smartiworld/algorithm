@@ -21,7 +21,7 @@ public class Graph<V> {
     /**
      * 图的边集
      */
-    public Set<Edge> edges;
+    public Set<Edge<V>> edges;
     
     public Graph() {
         this.nodeMap = new HashMap<>();
@@ -47,11 +47,11 @@ public class Graph<V> {
         /**
          * 出度连着的点
          */
-        public List<Node> nexts;
+        public List<Node<V>> nexts;
         /**
          * 出度连着的边
          */
-        public List<Edge> edges;
+        public List<Edge<V>> edges;
         
         public Node(V v) {
             this.value = v;

@@ -31,16 +31,24 @@ public class GraphDijkstra {
             for (Graph.Edge edge : first.edges) {
                 Graph.Node<Integer> to = edge.to;
                 Integer toDistance = distanceMap.get(to);
+                // 还未有到当前点距离 或者新的距离小于原来距离
                 if (toDistance == null || (distance + edge.weight) < toDistance) {
                     distanceMap.put(to, distance + edge.weight);
                 }
             }
             selectNodes.add(first);
+            // 找出未使用最小距离的点
             first = selectMinWeightNode(distanceMap, selectNodes);
         }
         return distanceMap;
     }
     
+    /**
+     * 找出最小距离的点
+     * @param distanceMap
+     * @param selectNodes
+     * @return
+     */
     private static Graph.Node<Integer> selectMinWeightNode(Map<Graph.Node<Integer>, Integer> distanceMap, Set<Graph.Node> selectNodes) {
         int min = Integer.MAX_VALUE;
         Graph.Node<Integer> result = null;

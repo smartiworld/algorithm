@@ -66,8 +66,6 @@ public class GraphDijkstraHeap<V> {
     /**
      * 当前位置的元素 上浮
      * push元素时
-     * 10.104.109.166:3306
-     * 10.104.249.39:3309
      * @param index
      */
     private void upward(int index) {
