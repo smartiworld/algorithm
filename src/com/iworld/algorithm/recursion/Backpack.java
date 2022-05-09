@@ -3,7 +3,7 @@ package com.iworld.algorithm.recursion;
 /**
  * @author gq.cai
  * @version 1.0
- * @description 背包问题
+ * @description 背包问题  left to right model
  * 给定两个长度都位N的数组weights和values
  * weights[i]表示i位置物品重量values[i]表示i位置物品价值
  * 给定一个正整数bag 表示一个可以承受bag重量的袋子，装的物品不能超过袋子承受重量
@@ -23,14 +23,14 @@ public class Backpack {
         if (weights == null || values == null || weights.length == 0 || values.length == 0 || bag <= 0) {
             return 0;
         }
-        return process(0, weights, values, bag);
+        return process2(0, weights, values, bag);
     }
     
     public static int obtainMaxValue3(int[] weights, int[] values, int bag) {
         if (weights == null || values == null || weights.length == 0 || values.length == 0 || bag <= 0) {
             return 0;
         }
-        return process2(0, weights, values, bag);
+        return process3(0, weights, values, bag);
     }
     
     /**
@@ -67,7 +67,7 @@ public class Backpack {
      * @param laveBag    剩余容量
      * @return
      */
-    public static int process(int index, int[] weights, int[] values, int laveBag) {
+    public static int process2(int index, int[] weights, int[] values, int laveBag) {
         // 如果背包剩余容量小于0 表示此时无解 返回价值0
         if (laveBag < 0) {
             return 0;
@@ -77,12 +77,12 @@ public class Backpack {
             return 0;
         }
         // 不选择当前位置 剩余容量和选择价值都不变处理后续位置
-        int unSelectValue = process(index + 1, weights, values, laveBag);
+        int unSelectValue = process2(index + 1, weights, values, laveBag);
         int selectValue = 0;
         // 表示 背包可以容纳当前物品时
         if (laveBag >= weights[index]) {
             // 选择当前位置 剩余容量=前剩余容量-当前物品重量  选择物品总价值=前总价值+当前物品价值 处理后续位置
-            selectValue = values[index] + process(index + 1, weights, values, laveBag - weights[index]);
+            selectValue = values[index] + process2(index + 1, weights, values, laveBag - weights[index]);
         }
         // 选择和不选择种找出最大价值
         return Math.max(unSelectValue, selectValue);
@@ -96,7 +96,7 @@ public class Backpack {
      * @param laveBag    剩余容量
      * @return
      */
-    public static int process2(int index, int[] weights, int[] values, int laveBag) {
+    public static int process3(int index, int[] weights, int[] values, int laveBag) {
         // 如果背包剩余容量小于0 表示此时无解 返回-1
         if (laveBag < 0) {
             return -1;
@@ -106,9 +106,9 @@ public class Backpack {
             return 0;
         }
         // 不选择当前位置 剩余容量和选择价值都不变处理后续位置
-        int unSelectValue = process2(index + 1, weights, values, laveBag);
+        int unSelectValue = process3(index + 1, weights, values, laveBag);
         // 选择当前位置 剩余容量=前剩余容量-当前物品重量 处理后续位置
-        int selectValue = process2(index + 1, weights, values, laveBag - weights[index]);;
+        int selectValue = process3(index + 1, weights, values, laveBag - weights[index]);;
         if (selectValue != -1) {
             // 选择物品总价值=前总价值+当前物品价值
             selectValue = values[index] + selectValue;
