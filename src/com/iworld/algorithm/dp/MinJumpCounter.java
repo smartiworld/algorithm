@@ -1,4 +1,4 @@
-package com.iworld.algorithm;
+package com.iworld.algorithm.dp;
 
 /**
  * 动态规划

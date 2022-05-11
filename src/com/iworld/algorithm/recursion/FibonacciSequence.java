@@ -1,4 +1,4 @@
-package com.iworld.algorithm;
+package com.iworld.algorithm.recursion;
 
 /**
  * 斐波那契数列
@@ -14,8 +14,8 @@ public class FibonacciSequence {
         FibonacciSequence fibonacciSequence = new FibonacciSequence();
         int fibonacciNum = fibonacciSequence.getFibonacci(6);
         System.out.println(fibonacciNum);
-        int fibonacciNum2 = fibonacciSequence.getFibonacciForEache(6);
-        System.out.println("fibonacciNum==" + fibonacciNum + "==fibonacciNum2==" + fibonacciNum);
+        int fibonacciNum2 = fibonacciSequence.getFibonacciForEach(6);
+        System.out.println("fibonacciNum==" + fibonacciNum + "==fibonacciNum2==" + fibonacciNum2);
     }
 
     public void test(){
@@ -40,7 +40,7 @@ public class FibonacciSequence {
      * @param n
      * @return
      */
-    public int getFibonacciForEache(int n){
+    public int getFibonacciForEach(int n){
         if(n < 2){
             return defaultsArray[n];
         }
