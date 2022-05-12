@@ -114,6 +114,7 @@ public class DPRobotMoveToTarget {
      * target==n的时候当前位置依赖target-1 step-1的位置
      * 其他位置 依赖target+1 step-1 + target-1 step-1
      * 最终使用递归主函数调用传入的step和target
+     * 变化参数为步数step和走的位置target 构建二维数组
      * @param n       总长度
      * @param m       起始位置
      * @param k       总步数
