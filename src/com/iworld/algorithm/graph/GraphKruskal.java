@@ -21,18 +21,18 @@ import java.util.Set;
 public class GraphKruskal {
     
     
-    public Set<Graph.Edge> kruskal(Graph<String> graph) {
+    public Set<Graph.Edge<String>> kruskal(Graph<String> graph) {
         if (graph == null || graph.edges == null) {
             return null;
         }
         // 将图的所有节点放入并查集中
         UnionSetOpt<Graph.Node<String>> unionSetOpt = new UnionSetOpt<>(graph.nodeMap.values());
-        Set<Graph.Edge> result = new HashSet<>();
-        PriorityQueue<Graph.Edge> priorityQueue = new PriorityQueue<>(new EdgeComparator());
+        Set<Graph.Edge<String>> result = new HashSet<>();
+        PriorityQueue<Graph.Edge<String>> priorityQueue = new PriorityQueue<>(new EdgeComparator());
         // 将图的所有边放入小根堆 按照边权重
         priorityQueue.addAll(graph.edges);
         while (!priorityQueue.isEmpty()) {
-            Graph.Edge poll = priorityQueue.poll();
+            Graph.Edge<String> poll = priorityQueue.poll();
             // 如果当前边的两个点不在同一个集合中 则选中当前边 将边上两个点放入同一个集合
             if (!unionSetOpt.isSameSet(poll.from, poll.to)) {
                 result.add(poll);
