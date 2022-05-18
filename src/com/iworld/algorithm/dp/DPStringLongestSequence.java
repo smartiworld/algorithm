@@ -43,7 +43,7 @@ public class DPStringLongestSequence {
                 // 先决定出不都包含当前位置 哪个大取哪个 case 2 3
                 dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
                 if (str1.charAt(i) == str2.charAt(j)) {
-                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                    dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - 1] + 1);
                 }
             }
         }
