@@ -13,7 +13,7 @@ import java.util.List;
 public class StringRecursion {
     
     /**
-     * 获取一个字符串所有的子字符串
+     * 获取一个字符串所有的子字符串  未实现
      * 子串，次序不变  不能间断
      * @param str
      * @return
@@ -23,21 +23,54 @@ public class StringRecursion {
             return null;
         }
         List<String> result = new ArrayList<>();
-        subStrRecursion2(0, str.toCharArray(), "", result);
+        subStrRecursion(0, str.toCharArray(), "", result, false, 0);
         return result;
     }
     
-    private static void subStrRecursion(int index, char[] chars, String str, List<String> result) {
-        if (index == chars.length) {
+    /**
+     * 递归处理拼接字符串
+     * 字符两种状态
+     * 1.选择
+     * 2.不选择 不选择得时候需要看前字符选择状态
+     * 2.1.如果前字符是已选择状态 则需要停止当前递归
+     * 2.2.如果前面字符未选择状态 继续
+     * 当前字符和前面字符选择状态
+     * @param index   来到字符的位置
+     * @param chars   字符char数组  不变
+     * @param str      已经拼接的字符串
+     * @param result   所有结果
+     * @param isEnd    告诉后面是否需要结束
+     * @param type     调用类型 当前位置需要知道前面字符位置 选择状态 1未选择 2选择
+     */
+    private static void subStrRecursion(int index, char[] chars, String str, List<String> result, boolean isEnd, int type) {
+        if (index == chars.length || isEnd) {
             result.add(str);
             return ;
         }
-        for (int i = index; i < chars.length; i++) {
-            subStrRecursion(index + 1, chars, str + chars[i], result);
+        if (index > 0 && type == 2) {
+            subStrRecursion(index + 1, chars, str, result, true, 1);
+        } else {
+            subStrRecursion(index + 1, chars, str, result, false, 1);
         }
+        subStrRecursion(index + 1, chars, str + chars[index], result, false, 2);
     }
     
-    private static void subStrRecursion2(int index, char[] chars, String str, List<String> result) {
+    /**
+     * 获取一个字符串所有的子字符串
+     * 子串，次序不变  不能间断
+     * @param str
+     * @return
+     */
+    public static List<String> getAllSubStr2(String str) {
+        if (str == null || str.length() == 0) {
+            return null;
+        }
+        List<String> result = new ArrayList<>();
+        subStrRecursion2(str.toCharArray(), result);
+        return result;
+    }
+    
+    private static void subStrRecursion2(char[] chars, List<String> result) {
         String s = "";
         for (int i = 0; i < chars.length; i++) {
             s = s + chars[i];
@@ -132,6 +165,8 @@ public class StringRecursion {
     
     /**
      * 递归排列字符
+     * 来到index位置 0~index-1位置处理完毕
+     * 然后将index后面位置字符和index交换位置排列 执行完后再交换位置 恢复现场
      * @param index   当前来到的index位置
      * @param chars   当前处理的字符数组
      * @param result  字符串结果集
@@ -201,11 +236,12 @@ public class StringRecursion {
     }
     
     public static void main(String[] args) {
-        String str = "aab";
-        List<String> abc = getAllSubStr(str);
-        System.out.println(abc);
+        String str = "abcd";
+        System.out.println(getAllSubStr(str));
+        System.out.println(getAllSubStr2(str));
         List<String> abc1 = getAllSubSequence(str);
         System.out.println(abc1);
+        System.out.println(getAllNoSameSubSequence(str));
         List<String> abc2 = stringAllArrangement(str);
         System.out.println(abc2);
         List<String> abc3 = noSameStringAllArrangement(str);
