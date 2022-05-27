@@ -79,8 +79,9 @@ public class DeleteTargetNode {
             fast = fast.next;
             slow = slow.next;
         }
+        ListNode next = slow.next;
         slow.next = slow.next.next;
-        slow.next.next = null;
+        next.next = null;
         return dummy.next;
     }
     
@@ -109,16 +110,16 @@ public class DeleteTargetNode {
     
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
-        ListNode l2 = new ListNode(2);
-        head.next = l2;
-        ListNode l3 = new ListNode(3);
-        l2.next = l3;
-        ListNode l4 = new ListNode(4);
-        l3.next = l4;
-        ListNode l5 = new ListNode(5);
-        l4.next = l5;
+//        ListNode l2 = new ListNode(2);
+//        head.next = l2;
+//        ListNode l3 = new ListNode(3);
+//        l2.next = l3;
+//        ListNode l4 = new ListNode(4);
+//        l3.next = l4;
+//        ListNode l5 = new ListNode(5);
+//        l4.next = l5;
         DeleteTargetNode deleteTargetNode = new DeleteTargetNode();
-        ListNode listNode = deleteTargetNode.removeNthFromEnd3(head, 1);
+        ListNode listNode = deleteTargetNode.removeNthFromEnd2(head, 1);
         while (listNode != null) {
             System.out.println(listNode.val);
             listNode = listNode.next;
