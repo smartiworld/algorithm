@@ -56,7 +56,7 @@ public class IntegerRevert {
         int result = 0;
         int num = x;
         while (num != 0) {
-            if (result > Integer.MAX_VALUE / 10 || result < Integer.MIN_VALUE) {
+            if (result > Integer.MAX_VALUE / 10 || result < Integer.MIN_VALUE / 10) {
                 return 0;
             }
             int bit = num % 10;
