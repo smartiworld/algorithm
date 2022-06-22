@@ -3,7 +3,7 @@ package com.iworld.algorithm.dp;
 /**
  * @author gq.cai
  * @version 1.0
- * @description 292.Nim游戏
+ * @description 打表技巧 292.Nim游戏
  * 你和你的朋友，两个人一起玩 Nim 游戏：
  *
  * 桌子上有一堆石头。
@@ -62,6 +62,11 @@ public class NimGame {
         return f(n);
     }
     
+    /**
+     * 先手函数
+     * @param n
+     * @return
+     */
     private boolean f(int n) {
         if (n <= 3) {
             return true;
@@ -69,6 +74,11 @@ public class NimGame {
         return s(n - 1) || s(n - 2) || s(n - 3);
     }
     
+    /**
+     * 如果后手小于3了先手失败
+     * @param n
+     * @return
+     */
     private boolean s(int n) {
         if (n <= 3) {
             return false;
