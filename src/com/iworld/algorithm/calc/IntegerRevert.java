@@ -67,9 +67,49 @@ public class IntegerRevert {
         return result;
     }
     
+    public int reverse4(int x) {
+        int result = 0;
+        while (x != 0) {
+            int tail = x % 10;
+            int newResult = result * 10 + tail;
+            // 表示newResult已经越界
+            if ((newResult - tail) / 10 != result) {
+                return 0;
+            }
+            result = newResult;
+            x = x / 10;
+        }
+        return result;
+    }
+    
+    public int reverseZuo(int x) {
+        // 负数最高位为1 int32位 右移31位 如果32位为1 则为负数
+        boolean neg = ((x >>> 31) & 1) == 1;
+        x = neg ? x : -x;
+        int result = 0;
+        // 倒数第二位值
+        int max = Integer.MIN_VALUE / 10;
+        // 最后一位值
+        int min = Integer.MIN_VALUE % 10;
+        while (x != 0) {
+            if (result < max || (result == max && x % 10 < min)) {
+                return 0;
+            }
+            int bit = x % 10;
+            result = result * 10 + bit;
+            x = x / 10;
+        }
+        return neg ? result : -result;
+    }
+    
     public static void main(String[] args) {
         IntegerRevert integerRevert = new IntegerRevert();
+        int a = 2147483647;//2143847412
         System.out.println(integerRevert.reverse(-2147483412));
+        System.out.println(integerRevert.reverse2(1534236469));
+        System.out.println(integerRevert.reverse3(1534236469));
+        System.out.println(integerRevert.reverse4(1463847412));
+        System.out.println(integerRevert.reverseZuo(1463847412));
         System.out.println(Integer.MAX_VALUE);
         System.out.println(Integer.MIN_VALUE);
     }
