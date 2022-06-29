@@ -69,23 +69,34 @@ public class LongestPalindromeStr {
         return new String(str, begin, maxLen);
     }
     
+    /**
+     * idx来到对比的位置
+     * @param str
+     * @param idx        到对比的位置
+     * @param direction  控制左右
+     */
     private void expandCenter(char[] str, int idx, int direction) {
         int n = str.length, i = idx - 1, j = idx + 1;
+        // 对比左边字符和当前位置是否相同
         while (i >= 0 && str[i] == str[idx]) {
             i--;
         }
+        // 对比右边字符和当前位置是否相同
         while (j < n && str[j] == str[idx]) {
             j++;
         }
         int x = i, y = j;
+        // 对比左右对称字符是否相同
         while (x >= 0 && y < n && str[x] == str[y]) {
             x--;
             y++;
         }
+        // 结算当前回文字符长度
         if (y - x - 1 > maxLen) {
             begin = x + 1;
             maxLen = y - x - 1;
         }
+        // 剩余字符串长度如果超过当前已经的出回文长度
         if (i + 1 << 1 > maxLen && direction <= 0) {
             expandCenter(str, i, -1);
         }
@@ -108,11 +119,18 @@ public class LongestPalindromeStr {
         return s.substring(lo, lo + maxLen);
     }
     
+    /**
+     * 对比给定传入字符位置
+     * @param s
+     * @param j 需要对比的左字符
+     * @param k 需要对比的右字符
+     */
     private void extendPalindrome(String s, int j, int k) {
         while (j >= 0 && k < s.length() && s.charAt(j) == s.charAt(k)) {
             j--;
             k++;
         }
+        // 结算长度 和起始位置
         if (maxLen < k - j - 1) {
             lo = j + 1;
             maxLen = k - j - 1;
