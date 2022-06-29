@@ -24,10 +24,11 @@ package com.iworld.algorithm.list;
  * 1 <= n <= sz
  *
  * 链接：https://leetcode.cn/problems/remove-nth-node-from-end-of-list
+ * https://leetcode.com/problems/remove-nth-node-from-end-of-list/
  * 可以一遍扫描吗
  * @date 2022/5/27 0:10
  */
-public class DeleteTargetNode {
+public class RemoveNthNodeFromEndList {
     
     public ListNode removeNthFromEnd(ListNode head, int n) {
         int length = 0;
@@ -108,6 +109,25 @@ public class DeleteTargetNode {
         return m+1;
     }
     
+    public ListNode removeNthFromEnd4(ListNode head, int n) {
+        ListNode fast = head;
+        int i = 0;
+        while (n > 0) {
+            fast = fast.next;
+            n --;
+        }
+        if (fast == null) {
+            return head.next;
+        }
+        ListNode slow = head;
+        while (fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        slow.next = slow.next.next;
+        return head;
+    }
+    
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
 //        ListNode l2 = new ListNode(2);
@@ -118,7 +138,7 @@ public class DeleteTargetNode {
 //        l3.next = l4;
 //        ListNode l5 = new ListNode(5);
 //        l4.next = l5;
-        DeleteTargetNode deleteTargetNode = new DeleteTargetNode();
+        RemoveNthNodeFromEndList deleteTargetNode = new RemoveNthNodeFromEndList();
         ListNode listNode = deleteTargetNode.removeNthFromEnd2(head, 1);
         while (listNode != null) {
             System.out.println(listNode.val);
