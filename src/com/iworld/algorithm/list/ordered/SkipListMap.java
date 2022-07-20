@@ -109,9 +109,9 @@ public class SkipListMap<K extends Comparable<K>, V> {
         if (containsKey(key)) {
             size --;
             int level = maxLevel;
+            SkipListMapNode<K, V> pre = head;
             // 一层一层处理
             while (level >= 0) {
-                SkipListMapNode<K, V> pre = head;
                 SkipListMapNode<K, V> lessLevelNode = mostRightLessNodeInLevel(key, pre, level);
                 SkipListMapNode<K, V> next = lessLevelNode.nextNode.get(level);
                 if (next != null && next.isKeyEquals(key)) {
@@ -119,11 +119,9 @@ public class SkipListMap<K extends Comparable<K>, V> {
                     // set cur next = null
                 }
                 // 削减顶层 不是最底 如果删除当前节点的当前层后  前面没有可以削减最大高度
-                if (level != 0 && pre.nextNode.get(level) == null) {
+                if (level != 0 && pre.nextNode.get(level) == null && pre == head) {
                     pre.nextNode.remove(level);
-                    if (pre == head) {
-                        maxLevel--;
-                    }
+                    maxLevel--;
                 }
                 level --;
             }
