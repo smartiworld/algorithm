@@ -150,6 +150,7 @@ public class SegmentTree {
             return sums[index];
         }
         int mid = l + ((r - l) >> 1);
+        pushValueDown(index, mid - l + 1, r - mid);
         long ans = 0;
         if (left <= mid) {
             ans += query(left, right, l, mid, index << 1);
