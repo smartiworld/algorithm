@@ -79,18 +79,22 @@ public class SubStrWithoutRepeating {
         if (s == null || s.length() == 0) {
             return 0;
         }
-        int l = 0, r = 0, longest = 0;
+        // 记录当前字符长度左边最大重复位置
+        int l = 0;
+        // 遍历字符位置
+        int r = 0;
+        int longest = 0;
         // ascii做下标 value为字符出现位置
         int[] chars = new int[95];
         int offset = 32;
         while (r < s.length()) {
             int c = s.charAt(r);
+            // 计算当前字符出现重复字符位置最大值
             l = Math.max(chars[c - offset], l);
             longest = Math.max(longest, r - l + 1);
             chars[c - offset] = r + 1;
             r++;
         }
-        
         return longest;
     }
     
