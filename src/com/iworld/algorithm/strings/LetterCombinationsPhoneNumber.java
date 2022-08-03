@@ -6,7 +6,8 @@ import java.util.List;
 /**
  * @author gq.cai
  * @version 1.0
- * @description 17.Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
+ * @description 17. Letter Combinations of a Phone Number
+ * Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
  *
  * A mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
  * Example 1:
@@ -44,6 +45,7 @@ public class LetterCombinationsPhoneNumber {
         while (ans.peek().length() != digits.length()) {
             // remove长度代表处理原字符串的位置
             String remove = ans.pop();
+            // 手机键盘字母字母从2开始 map下标从0开始 所以需要-'2'
             String map = mapping[digits.charAt(remove.length()) - '2'];
             for (char c : map.toCharArray()) {
                 ans.add(remove + c);
@@ -62,6 +64,14 @@ public class LetterCombinationsPhoneNumber {
         return ans;
     }
     
+    /**
+     *
+     * @param digits
+     * @param index
+     * @param sb
+     * @param ans
+     * @param map
+     */
     private void process(String digits, int index, StringBuilder sb, LinkedList<String> ans, String[] map) {
         if (digits.length() == index) {
             ans.add(sb.toString());
