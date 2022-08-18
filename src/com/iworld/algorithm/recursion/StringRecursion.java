@@ -13,7 +13,7 @@ import java.util.List;
 public class StringRecursion {
     
     /**
-     * 获取一个字符串所有的子字符串  未实现
+     * 获取一个字符串所有的子字符串
      * 子串，次序不变  不能间断
      * @param str
      * @return
@@ -48,10 +48,13 @@ public class StringRecursion {
             return ;
         }
         if (index > 0 && type == 2) {
+            // 前面选择了 当前位置没有选 只能结束点 字串需要连续
             subStrRecursion(index + 1, chars, str, result, true, 1);
         } else {
+            // 表示初始位置 或者是前面没有选 当前位置可以不选择 并且不需要结束
             subStrRecursion(index + 1, chars, str, result, false, 1);
         }
+        // 当前位置选择 不需要结束
         subStrRecursion(index + 1, chars, str + chars[index], result, false, 2);
     }
     
