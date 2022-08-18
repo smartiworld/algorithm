@@ -10,6 +10,9 @@ import java.util.List;
  * @description 78.子集
  * 给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。
  * 解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。
+ * Given an integer array nums of unique elements, return all possible subsets (the power set).
+ *
+ * The solution set must not contain duplicate subsets. Return the solution in any order.
  * 示例 1：
  *
  * 输入：nums = [1,2,3]
@@ -23,6 +26,7 @@ import java.util.List;
  * nums 中的所有元素 互不相同
  *
  * 链接：https://leetcode.cn/problems/subsets
+ * https://leetcode.com/problems/subsets/
  * @date 2022/5/30 17:01
  */
 public class SubSets {
