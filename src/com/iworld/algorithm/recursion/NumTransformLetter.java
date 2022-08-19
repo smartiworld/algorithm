@@ -41,7 +41,7 @@ public class NumTransformLetter {
         }
         // 如果当前位置是2 并且下一位是1-6中间数字 可以连续下一位 转换一个字符
         if (chars[index] == '2' && index + 2 <= chars.length
-                && chars[index + 1] > '0' && chars[index + 1] < '6') {
+                && chars[index + 1] >= '0' && chars[index + 1] < '7') {
             oneBitCount = oneBitCount + process(index + 2, chars);
         }
         return oneBitCount;
@@ -85,15 +85,16 @@ public class NumTransformLetter {
         }
         // 如果当前位置是2 并且下一位是1-6中间数字 可以连续下一位 转换一个字符
         if (chars[index] == '2' && index + 2 <= chars.length
-                && chars[index + 1] > '0' && chars[index + 1] < '6') {
-            newStr = everyResult + charMap[Integer.parseInt(String.valueOf(chars[index] + chars[index + 1]))];
+                && chars[index + 1] >= '0' && chars[index + 1] < '7') {
+            newStr = everyResult + charMap[Integer.parseInt(chars[index] + String.valueOf(chars[index + 1]))];
             oneBitCount = oneBitCount + process2(index + 2, chars, result, newStr, charMap);
         }
         return oneBitCount;
     }
     
     public static void main(String[] args) {
-        String a = "111";
+        String a = "111111111111111111111111111111111111111111111";
+        System.out.println(strNumTransformLetterCount(a));
         System.out.println(strNumTransformLetter(a));
     }
 }
