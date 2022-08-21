@@ -60,6 +60,40 @@ public class ValidateBinarySearchTree {
         return new TreeInfo(max, min, isBST);
     }
     
+    public boolean isValidBSTMorris(TreeNode root) {
+        Integer pre = null;
+        TreeNode cur = root;
+        boolean ans = true;
+        while (cur != null) {
+            TreeNode mostRight = cur.left;
+            if (mostRight != null) {
+                while (mostRight.right != null && mostRight.right != cur) {
+                    mostRight = mostRight.right;
+                }
+                if (mostRight.right == null) {
+                    mostRight.right = cur;
+                    cur = cur.left;
+                } else {
+                    mostRight.right = null;
+                    if (pre != null && pre >= cur.val) {
+                        ans = false;
+                        break;
+                    }
+                    pre = cur.val;
+                    cur = cur.right;
+                }
+            } else {
+                if (pre != null && pre >= cur.val) {
+                    ans = false;
+                    break;
+                }
+                pre = cur.val;
+                cur = cur.right;
+            }
+        }
+        return ans;
+    }
+    
     public static class TreeInfo {
         public int max;
         public int min;
@@ -70,5 +104,20 @@ public class ValidateBinarySearchTree {
             this.min = min;
             this.isBST = isBST;
         }
+    }
+    
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(5);
+        TreeNode t2 = new TreeNode(1);
+        TreeNode t3 = new TreeNode(4);
+        root.left = t2;
+        root.right = t3;
+        TreeNode t6 = new TreeNode(3);
+        TreeNode t7 = new TreeNode(6);
+        t3.left = t6;
+        t3.right = t7;
+        ValidateBinarySearchTree validateBinarySearchTree = new ValidateBinarySearchTree();
+        System.out.println(validateBinarySearchTree.isValidBST(root));
+        System.out.println(validateBinarySearchTree.isValidBSTMorris(root));
     }
 }
