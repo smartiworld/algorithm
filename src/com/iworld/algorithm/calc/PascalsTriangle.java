@@ -50,6 +50,5 @@ public class PascalsTriangle {
         PascalsTriangle pascalsTriangle = new PascalsTriangle();
         int numRows = 5;
         System.out.println(pascalsTriangle.generate(numRows));
-        System.out.println(pascalsTriangle.generate2(numRows));
     }
 }
