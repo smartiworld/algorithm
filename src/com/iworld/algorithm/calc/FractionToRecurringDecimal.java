@@ -41,13 +41,19 @@ import java.util.Map;
  * @date 2022/9/3 14:42
  */
 public class FractionToRecurringDecimal {
+    /**
+     * 记录小数后除数放入map 如果出现相同的分子了
+     * 后面就表示要循环了 此时从map中取出第一次出现的位置从当前位置后到结尾就需要加（）
+     * @param numerator
+     * @param denominator
+     * @return
+     */
     public String fractionToDecimal(int numerator, int denominator) {
-        Map<Long, Integer> indexMap = new HashMap<>();
-        List<Long> decimals = new ArrayList<>();
         long num = Math.abs((long) numerator);
         long den = Math.abs((long) denominator);
         long head = num / den;
         long mod = num % den;
+        // 判断结果是否为负数 为负数需要在结果前添加负号
         boolean isNegative = numerator < 0 && denominator > 0 || numerator > 0 && denominator < 0;
         StringBuilder sb = new StringBuilder();
         if (isNegative) {
@@ -61,8 +67,14 @@ public class FractionToRecurringDecimal {
         int startIndex = 0;
         int endIndex = 0;
         boolean isCycle = false;
+        // 记录生成余数字符串位置
+        Map<Long, Integer> indexMap = new HashMap<>();
+        // 生成的余数串
+        List<Long> decimals = new ArrayList<>();
         while (mod != 0) {
+            // 余数乘10接着除分母
             num = mod * 10;
+            // 判断当前分子是否出现过 出现过不需要处理
             if (indexMap.containsKey(num)) {
                 startIndex = indexMap.get(num);
                 isCycle = true;
