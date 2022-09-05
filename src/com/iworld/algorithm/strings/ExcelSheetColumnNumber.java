@@ -45,7 +45,7 @@ import java.util.Map;
  */
 public class ExcelSheetColumnNumber {
     
-    public static int titleToNumber(String columnTitle) {
+    public int titleToNumber(String columnTitle) {
         char[] str = columnTitle.toCharArray();
         int ans = 0;
         for (int i = 0; i < str.length; i++) {
@@ -55,6 +55,16 @@ public class ExcelSheetColumnNumber {
     }
     
     public int titleToNumber2(String columnTitle) {
+        char[] chars = columnTitle.toCharArray();
+        int n = chars.length - 1;
+        int ans = 0;
+        for (int i = 0; i < chars.length; i++) {
+            ans += (chars[i] - 'A' + 1) * Math.pow(26, n--);
+        }
+        return ans;
+    }
+    
+    public int titleToNumber3(String columnTitle) {
         Map<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < 26; i++) {
             map.put((char) ('A' + i), i + 1);
@@ -72,5 +82,7 @@ public class ExcelSheetColumnNumber {
         ExcelSheetColumnNumber excelSheetColumnNumber = new ExcelSheetColumnNumber();
         String columnTitle = "AB";
         System.out.println(excelSheetColumnNumber.titleToNumber(columnTitle));
+        System.out.println(excelSheetColumnNumber.titleToNumber2(columnTitle));
+        System.out.println(excelSheetColumnNumber.titleToNumber3(columnTitle));
     }
 }
