@@ -34,13 +34,12 @@ package com.iworld.algorithm.calc;
  * Output: 31
  * Explanation: The input binary string 11111111111111111111111111111101 has a total of thirty one '1' bits.
  *
- *
  * Constraints:
  *
  * The input must be a binary string of length 32.
  *
- *
  * Follow up: If this function is called many times, how would you optimize it?
+ * https://leetcode.com/problems/number-of-1-bits/
  * @date 2022/9/5 18:55
  */
 public class NumberOf1Bits {
