@@ -23,6 +23,8 @@ package com.iworld.algorithm.strings;
  * Input: haystack = "aaaaa", needle = "bba"
  * Output: -1
  * https://leetcode.com/problems/implement-strstr/
+ * https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
+ * Find the Index of the First Occurrence in a String
  * @date 2022/6/30 15:55
  */
 public class ImplementStrStr {
