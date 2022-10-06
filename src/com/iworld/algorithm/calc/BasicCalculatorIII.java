@@ -77,6 +77,40 @@ public class BasicCalculatorIII {
         return new int[]{calc, i};
     }
     
+    public int calculate2(String s) {
+        return process(s, 0)[0];
+    }
+    
+    private int[] process(String s, int index) {
+        LinkedList<String> stack = new LinkedList<>();
+        char[] chars = s.toCharArray();
+        int preNum = 0;
+        int i = index;
+        for (;i < chars.length; i++) {
+            char cur = chars[i];
+            if (cur != ' ') {
+                if (cur == ')') {
+                    break;
+                }
+                if (cur == '(') {
+                    int[] process = process(s, i + 1);
+                    preNum = process[0];
+                    i = process[1];
+                } else {
+                    if (cur >= '0' && cur <= '9') {
+                        preNum = preNum * 10 + (cur - '0');
+                    } else {
+                        dealStack(stack, preNum, String.valueOf(cur));
+                        preNum = 0;
+                    }
+                }
+            }
+        }
+        dealStack(stack, preNum, null);
+        int calc = calcFromStack(stack);
+        return new int[]{calc, i};
+    }
+    
     private void dealStack(LinkedList<String> stack, int num, String cur) {
         if (stack.isEmpty() || "+".equals(stack.peekLast()) || "-".equals(stack.peekLast())) {
             stack.addLast(String.valueOf(num));
@@ -111,5 +145,6 @@ public class BasicCalculatorIII {
         String s = "2*(5+5*2)/3+(6/2+8)";
         BasicCalculatorIII basicCalculatorIII = new BasicCalculatorIII();
         System.out.println(basicCalculatorIII.calculate(s));
+        System.out.println(basicCalculatorIII.calculate2(s));
     }
 }
