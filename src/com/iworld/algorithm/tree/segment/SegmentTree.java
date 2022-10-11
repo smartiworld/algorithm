@@ -56,13 +56,16 @@ public class SegmentTree {
             return;
         }
         int mid = left + ((right - left) >> 1);
+        // 当前左右边界 左半部分去curIndex左子树  curIndex >> 1 左孩子在sums数组下标
         build(curIndex >> 1, left, mid);
+        // 当前左右边界 右半部分去curIndex右子树  curIndex >> 1 | 1  右孩子在sums数组下标
         build(curIndex >> 1 | 1, mid + 1, right);
         curTreeSum(curIndex);
     }
     
     /**
      * 当前位置数值为左右子树和
+     * 计算sums数组和 curIndex位置为 左孩子+右孩子
      * @param curIndex
      */
     private void curTreeSum(int curIndex) {
@@ -70,7 +73,20 @@ public class SegmentTree {
     }
     
     /**
+     * 在范围left~right 增加value
+     * @param left    任务的左边界
+     * @param right   任务的右边界
+     * @param value   当前范围要操作的数  增加
+     */
+    public void add(int left, int right, int value) {
+        add(left, right, 1, nums.length -1, value, 1);
+    }
+    /**
      * 在给定范围内增加一个数
+     * l r为nums左右边界
+     * nums左边界为1
+     * left和right 为实际操作范围  在范围left-right上增加value
+     * index 为虚拟数的头位置 即为1
      * @param left      任务的左边界
      * @param right     任务的右边界
      * @param l         实际左边界
@@ -100,6 +116,16 @@ public class SegmentTree {
         }
         // 更新当前位置sums树和
         curTreeSum(index);
+    }
+    
+    /**
+     * 给定的范围上 修改所有值为value
+     * @param left  任务左边界
+     * @param right 任务右边界
+     * @param value 要操作的值  修改
+     */
+    public void update(int left, int right, int value) {
+        update(left, right, 1, nums.length -1, value, 1);
     }
     
     /**
@@ -134,6 +160,16 @@ public class SegmentTree {
             update(left, right, mid + 1, r, value, index << 1 | 1);
         }
         curTreeSum(index);
+    }
+    
+    /**
+     * 查询给定范围的和
+     * @param left    任务左边界
+     * @param right   任务右边界
+     * @return
+     */
+    public long query(int left, int right) {
+        return query(left, right, 1, nums.length - 1, 1);
     }
     
     /**
