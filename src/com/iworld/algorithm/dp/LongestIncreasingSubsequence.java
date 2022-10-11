@@ -80,6 +80,37 @@ public class LongestIncreasingSubsequence {
     }
     
     /**
+     * lengthOfLIS简化版本 少使用内存空间
+     * @param nums
+     * @return
+     */
+    public static int lengthOfLIS3(int[] nums) {
+        int n = nums.length;
+        // 存数组下标 按顺序存放下标 存在下标值 一定是递增的
+        int[] end = new int[n];
+        end[0] = nums[0];
+        int eIndex = 0;
+        int ans = 1;
+        for (int i = 1; i < n; i++) {
+            int l = 0;
+            int r = eIndex;
+            while (l <= r) {
+                int mid = l + ((r - l) >> 1);
+                // 没有找到符合条件的mid值 如果当前位置大于end中mid下标值 将二分查找l放到mid+1位置 否则放到mid-1位置
+                if (end[mid] < nums[i]) {
+                    l = mid + 1;
+                } else {
+                    r = mid - 1;
+                }
+            }
+            eIndex = Math.max(l, eIndex);
+            end[l] = nums[i];
+            ans = Math.max(ans, l + 1);
+        }
+        return ans;
+    }
+    
+    /**
      *
      * @param nums
      * @return
