@@ -32,6 +32,7 @@ package com.iworld.algorithm.calc;
  * -2^31 <= n <= 2^31 - 1
  *
  * Follow up: Could you solve it without loops/recursion?
+ * https://leetcode.com/problems/power-of-three/
  * @date 2022/10/12 20:56
  */
 public class PowerOfThree {
