@@ -94,6 +94,7 @@ public class LongestIncreasingSubsequence {
         for (int i = 1; i < n; i++) {
             int l = 0;
             int r = eIndex;
+            // 跑出l位置会大于等于i位置
             while (l <= r) {
                 int mid = l + ((r - l) >> 1);
                 // 没有找到符合条件的mid值 如果当前位置大于end中mid下标值 将二分查找l放到mid+1位置 否则放到mid-1位置
@@ -103,7 +104,9 @@ public class LongestIncreasingSubsequence {
                     r = mid - 1;
                 }
             }
+            // end数组的右边界
             eIndex = Math.max(l, eIndex);
+            // l为当前i位置放入end数组位置
             end[l] = nums[i];
             ans = Math.max(ans, l + 1);
         }
@@ -122,7 +125,7 @@ public class LongestIncreasingSubsequence {
         dp[0] = 1;
         for (int i = 1; i < n; i++) {
             int max = 1;
-            for (int j = i - 1; j >=0; j--) {
+            for (int j = i - 1; j >= 0; j--) {
                 if (nums[i] > nums[j]) {
                     max = Math.max(max, 1 + dp[j]);
                 }
