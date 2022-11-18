@@ -1,4 +1,4 @@
-package com.iworld.algorithm.array.stack;
+package com.iworld.algorithm.array.stack.monotonous;
 
 import java.util.ArrayList;
 import java.util.List;
