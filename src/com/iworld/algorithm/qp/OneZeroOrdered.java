@@ -57,6 +57,23 @@ public class OneZeroOrdered {
         return process(i + 1, n) + process(i + 2, n);
     }
     
+    public int observeStrCountDp(int n) {
+        if (n < 0) {
+            return 0;
+        }
+        if (n == 1) {
+            return 1;
+        }
+        int next = 1;
+        int cur = 2;
+        for (int i = n - 2; i > 0; i--) {
+            int tmp = cur;
+            cur = cur + next;
+            next = tmp;
+        }
+        return cur;
+    }
+    
     public int observeStrCountMath(int n) {
         if (n < 1) {
             return 0;
@@ -110,6 +127,10 @@ public class OneZeroOrdered {
             int i3 = oneZeroOrdered.observeStrCountMath(i);
             if (i3 != i2) {
                 System.out.println("失败2===" + i + ",i3==" + i3 + ",i2=" + i2);
+            }
+            int i4 = oneZeroOrdered.observeStrCountDp(i);
+            if (i4 != i2) {
+                System.out.println("失败4===" + i + ",i4==" + i4 + ",i2=" + i2);
             }
         }
         System.out.println("end");
