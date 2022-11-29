@@ -1,4 +1,4 @@
-package com.iworld.algorithm.array;
+package com.iworld.algorithm.dp;
 
 /**
  * @author gq.cai
@@ -74,6 +74,7 @@ public class JumpGame {
         if (nums == null || nums.length < 2) {
             return true;
         }
+        // 前面可以走的最大位置
         int max = nums[0];
         for (int i = 1; i < nums.length; i++) {
             // 如果当前最大距离已经超过最后位置 直接返回
