@@ -1,9 +1,11 @@
 package com.iworld.algorithm.dp;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 
 /**
  * @author gq.cai
@@ -16,11 +18,13 @@ import java.util.Queue;
 public class JumpGameIIIFollow {
     
     public int jump(int[] nums, int start, int end) {
-        int ans = process(nums, end, start, 0);
+        Set<Integer> set = new HashSet<>();
+        set.add(start);
+        int ans = process(nums, end, start, 0, set);
         return ans == Integer.MAX_VALUE ? -1 : ans;
     }
     
-    private int process(int[] nums, int end, int i, int step) {
+    private int process(int[] nums, int end, int i, int step, Set<Integer> set) {
         if (i == end) {
             return step;
         }
@@ -28,11 +32,15 @@ public class JumpGameIIIFollow {
             return step + 1;
         }
         int min = -1;
-        if (i + nums[i] < nums.length) {
-            min = process(nums, end, i + nums[i], step + 1);
+        int nextIndex = i + nums[i];
+        if (nextIndex < nums.length && !set.contains(nextIndex)) {
+            set.add(nextIndex);
+            min = process(nums, end, nextIndex, step + 1, set);
         }
-        if (i - nums[i] >= 0) {
-            int tmp = process(nums, end, i - nums[i], step + 1);
+        int preIndex = i - nums[i];
+        if (preIndex >= 0 && !set.contains(preIndex)) {
+            set.add(preIndex);
+            int tmp = process(nums, end, preIndex, step + 1, set);
             if (min == -1) {
                 min = tmp;
             } else {
@@ -43,23 +51,29 @@ public class JumpGameIIIFollow {
     }
     
     public int jump2(int[] nums, int start, int end) {
-        int ans = process(nums, end, start, 0);
+        Set<Integer> set = new HashSet<>();
+        set.add(start);
+        int ans = process2(nums, end, start, set);
         return ans == Integer.MAX_VALUE ? -1 : ans;
     }
     
-    private int process2(int[] nums, int end, int i) {
+    private int process2(int[] nums, int end, int i, Set<Integer> set) {
         if (i == end) {
             return 0;
         }
-        if (i + nums[i] == end || i - nums[i] == end) {
+        int nextIndex = i + nums[i];
+        int preIndex = i - nums[i];
+        if (nextIndex == end || preIndex == end) {
             return 1;
         }
         int min = -1;
-        if (i + nums[i] < nums.length) {
-            min = process2(nums, end, i + nums[i]);
+        if (nextIndex < nums.length && !set.contains(nextIndex)) {
+            set.add(nextIndex);
+            min = process2(nums, end, nextIndex, set);
         }
-        if (i - nums[i] >= 0) {
-            int tmp = process2(nums, end, i - nums[i]);
+        if (preIndex >= 0 && !set.contains(preIndex)) {
+            set.add(preIndex);
+            int tmp = process2(nums, end, preIndex, set);
             if (min == -1) {
                 min = tmp;
             } else {
