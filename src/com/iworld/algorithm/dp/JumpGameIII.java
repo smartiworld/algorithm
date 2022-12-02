@@ -108,6 +108,34 @@ public class JumpGameIII {
         return false;
     }
     
+    public boolean canReachBfs2(int[] arr, int start) {
+        if (arr[start] == 0) {
+            return true;
+        }
+        Queue<Integer> indexQueue = new LinkedList<>();
+        // 记录走的路径index
+        Set<Integer> indexSet = new HashSet<>();
+        indexQueue.add(start);
+        indexSet.add(start);
+        while (!indexQueue.isEmpty()) {
+            Integer index = indexQueue.poll();
+            if (arr[index] == 0) {
+                return true;
+            }
+            int preIndex = index - arr[index];
+            if (preIndex > 0 && !indexSet.contains(preIndex)) {
+                indexSet.add(preIndex);
+                indexQueue.offer(preIndex);
+            }
+            int nextIndex = index + arr[index];
+            if (nextIndex < arr.length && !indexSet.contains(nextIndex)) {
+                indexSet.add(nextIndex);
+                indexQueue.offer(nextIndex);
+            }
+        }
+        return false;
+    }
+    
     public static void main(String[] args) {
         int[] arr = {3,0,2,1,2};
         JumpGameIII jumpGameIII = new JumpGameIII();
