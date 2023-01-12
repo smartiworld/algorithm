@@ -36,6 +36,7 @@ public class JumpGameIIIFollow {
         if (nextIndex < nums.length && !set.contains(nextIndex)) {
             set.add(nextIndex);
             min = process(nums, end, nextIndex, step + 1, set);
+            set.remove(nextIndex);
         }
         int preIndex = i - nums[i];
         if (preIndex >= 0 && !set.contains(preIndex)) {
@@ -46,6 +47,7 @@ public class JumpGameIIIFollow {
             } else {
                 min = Math.min(min, tmp);
             }
+            set.remove(preIndex);
         }
         return min;
     }
@@ -70,6 +72,7 @@ public class JumpGameIIIFollow {
         if (nextIndex < nums.length && !set.contains(nextIndex)) {
             set.add(nextIndex);
             min = process2(nums, end, nextIndex, set);
+            set.remove(nextIndex);
         }
         if (preIndex >= 0 && !set.contains(preIndex)) {
             set.add(preIndex);
@@ -79,6 +82,7 @@ public class JumpGameIIIFollow {
             } else {
                 min = Math.min(min, tmp);
             }
+            set.remove(preIndex);
         }
         if (min != -1) {
             min++;
@@ -122,6 +126,7 @@ public class JumpGameIIIFollow {
         int start = 5;
         int end = 3;
         System.out.println(jumpGameIIIFollow.jump(nums, start, end));
+        System.out.println(jumpGameIIIFollow.jump2(nums, start, end));
         System.out.println(jumpGameIIIFollow.jumpOpt(nums, start, end));
     }
 }
