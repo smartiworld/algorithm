@@ -73,6 +73,14 @@ public class JumpGameIV {
         return ans;
     }
     
+    /**
+     *
+     * @param arr
+     * @param index           当前来到的位置
+     * @param valueIndexMap   value indexs map
+     * @param set             走过的路径
+     * @return
+     */
     private int process(int[] arr, int index, Map<Integer, List<Integer>> valueIndexMap, Set<Integer> set) {
         if (index == arr.length - 1) {
             return 0;
