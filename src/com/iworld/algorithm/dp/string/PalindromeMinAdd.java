@@ -1,4 +1,4 @@
-package com.iworld.algorithm.dp;
+package com.iworld.algorithm.dp.string;
 
 /**
  * @author gq.cai
