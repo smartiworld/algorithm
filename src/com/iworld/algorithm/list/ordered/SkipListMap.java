@@ -112,10 +112,13 @@ public class SkipListMap<K extends Comparable<K>, V> {
             SkipListMapNode<K, V> pre = head;
             // 一层一层处理
             while (level >= 0) {
-                SkipListMapNode<K, V> lessLevelNode = mostRightLessNodeInLevel(key, pre, level);
-                SkipListMapNode<K, V> next = lessLevelNode.nextNode.get(level);
+                // 小于当前key的最右节点 next节点就是要删除的节点
+                pre = mostRightLessNodeInLevel(key, pre, level);
+                // 要删除的节点
+                SkipListMapNode<K, V> next = pre.nextNode.get(level);
                 if (next != null && next.isKeyEquals(key)) {
-                    lessLevelNode.nextNode.set(level, next.nextNode.get(level));
+                    // 当前层删除节点 将其当前层next指针指向前当前层next指针
+                    pre.nextNode.set(level, next.nextNode.get(level));
                     // set cur next = null
                 }
                 // 削减顶层 不是最底 如果删除当前节点的当前层后  前面没有可以削减最大高度
