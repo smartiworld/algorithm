@@ -37,6 +37,8 @@ package com.iworld.algorithm.dp;
  * 1 <= m, n <= 200
  * 0 <= matrix[i][j] <= 231 - 1
  * https://leetcode.com/problems/longest-increasing-path-in-a-matrix/
+ *
+ * https://github.com/algorithmzuo/trainingcamp004/blob/master/src/class01/Code01_LongestIncreasingPath.java
  * @date 2022/10/17 15:36
  */
 public class LongestIncreasingPathInMatrix {
@@ -111,6 +113,42 @@ public class LongestIncreasingPathInMatrix {
         }
         dp[i][j] = ans;
         return ans;
+    }
+    
+    public static int longestIncreasingPathDp(int[][] m) {
+        if (m == null || m.length == 0 || m[0].length == 0) {
+            return 0;
+        }
+        int[][] dp = new int[m.length][m[0].length];
+        // dp[i][j] (i,j)出发，走出的最长链长度
+        int max = 0;
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[0].length; j++) {
+                // 每一个(i,j)位置出发，都尝试
+                max = Math.max(max, maxIncrease(m, dp, i + 1, j, m[i][j]) + 1);
+                max = Math.max(max, maxIncrease(m, dp, i, j + 1, m[i][j]) + 1);
+                max = Math.max(max, maxIncrease(m, dp, i - 1, j, m[i][j]) + 1);
+                max = Math.max(max, maxIncrease(m, dp, i, j - 1, m[i][j]) + 1);
+            }
+            
+        }
+        return max;
+    }
+    
+    // 来到的当前位置是i,j位置
+    // p 上一步值是什么
+    // 从(i,j)位置出发，走出的最长链，要求：上一步是可以迈到当前步上的
+    public static int maxIncrease(int[][] m, int[][] dp, int i, int j, int p) {
+        if (i < 0 || i >= m.length || j < 0 || j >= m[0].length || m[i][j] <= p) {
+            return 0;
+        }
+        if (dp[i][j] == 0) { // i,j 出发，当前没算过
+            dp[i][j] = maxIncrease(m, dp, i + 1, j, m[i][j]) + 1;
+            dp[i][j] = Math.max(dp[i][j], maxIncrease(m, dp, i, j + 1, m[i][j]) + 1);
+            dp[i][j] = Math.max(dp[i][j], maxIncrease(m, dp, i - 1, j, m[i][j]) + 1);
+            dp[i][j] = Math.max(dp[i][j], maxIncrease(m, dp, i, j - 1, m[i][j]) + 1);
+        }
+        return dp[i][j];
     }
     
     public static void main(String[] args) {
