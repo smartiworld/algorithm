@@ -111,4 +111,33 @@ public class BestTimeToBuyAndSellStockWithCoolDown {
         }
         return sell;
     }
+    
+    public int maxProfit1(int[] prices) {
+        // 之前没有做买的决定
+        return process(prices,0, false, 0);
+    }
+    
+    private int process(int[] prices, int i, boolean buy, int buyPrices) {
+        if (i >= prices.length) {
+            return 0;
+        }
+        // 之前已经买了
+        if (buy) {
+            // 当前位置不卖 走下一个位置去决定卖不卖
+            int noSell = process(prices,i + 1, true, buyPrices);
+            // 当前位置决定卖 计算收益卖出获得为prices[i]减去之前买所花费的钱buyPrices，然后来到下两个位置去将要买，中间i+1位置需要冷静不能买
+            int yesSell = prices[i] - buyPrices + process(prices, i + 2, false,0);
+            // 决策当前位置卖和不卖最大值
+            return Math.max(noSell, yesSell);
+        } else {
+            // 之前没有做买的决定 当前可以买可以不买
+            // 当前位置没有决定买 需要下个位置决定买
+            int noBuy = process(prices, i + 1, false, 0);
+            // 当前位置决定
+            int yesBuy = process(prices, i+ 1, false, prices[i]);
+            // 当前买和当前位置不买决策出最优
+            return Math.max(noBuy, yesBuy);
+        }
+    }
+    
 }
