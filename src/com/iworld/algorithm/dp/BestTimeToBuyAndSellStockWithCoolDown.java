@@ -83,7 +83,7 @@ public class BestTimeToBuyAndSellStockWithCoolDown {
         // 0-1范围 如果在0位置只能是在0位置买了然后卖 收益0  如果在1位置卖 就是0-0范围buy最大的收益然后加上当前数字
         sell[1] = Math.max(sell[0], buy[0] + prices[1]);
         for (int i = 2; i < n; i++) {
-            // 当前i不参与买 和i参与买
+            // 当前i不参与买 和i参与买 如果参与买 需要i-2位置的最优-当前位置股票价格 当前买 前一位置需要cool down 所以需要i-2
             buy[i] = Math.max(buy[i - 1], sell[i - 2] - prices[i]);
             // i不参与卖出和i卖出 需要buy[0-i]范围最好买入
             sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i]);
@@ -134,7 +134,7 @@ public class BestTimeToBuyAndSellStockWithCoolDown {
             // 当前位置没有决定买 需要下个位置决定买
             int noBuy = process(prices, i + 1, false, 0);
             // 当前位置决定
-            int yesBuy = process(prices, i+ 1, false, prices[i]);
+            int yesBuy = process(prices, i+ 1, true, prices[i]);
             // 当前买和当前位置不买决策出最优
             return Math.max(noBuy, yesBuy);
         }
