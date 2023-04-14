@@ -37,8 +37,16 @@ public class DPSpliceString {
     
     /**
      * 处理index位置贴纸 0~index-1已经处理了
-     * @param useMap    贴纸map
-     * @param targets   匹配目标字符剩余未匹配的
+     * 数组下标为字符码
+     * 1.如果taget数组已经没有未匹配字符数量 表示当前使用的贴纸可以拼出target字符
+     * 2.如果目标字符没有匹配出 并且已经走到最后贴纸 表示之前选择的贴纸不能匹配目标字符
+     * 3.检查当前位置贴纸是否可以匹配目标字符
+     * 3.1不可以匹配则直接到来下一个贴纸位置
+     * 3.2可以匹配 目标字符减掉当前贴纸 来到下个位置
+     * 3.3可以匹配 也可以不选择当前贴纸 直接来到下一个位置
+     * 3.4将3.2和3.3结果选出使用贴纸最小数量
+     * @param useMap    贴纸map                行为每个贴纸 列为当前贴纸的字符 value表示当前贴纸字符个数
+     * @param targets   匹配目标字符剩余未匹配的  目标字符数量
      * @param index    来到贴纸位置
      * @param count    已经使用的贴纸数量
      * @return
@@ -58,10 +66,13 @@ public class DPSpliceString {
         boolean leastOneChar = false;
         int[] tmp = new int[targets.length];
         System.arraycopy(targets, 0, tmp, 0, targets.length);
+        // 使用当前贴纸 检查贴纸中字符是否存在可以减掉目标字符leastOneChar
         for (int i = 0; i < ints.length; i++) {
             if (!leastOneChar && tmp[i] > 0 && ints[i] > 0) {
+                // 当前贴纸字符可以匹配目标字符
                 leastOneChar = true;
             }
+            // 当前字符使用贴纸后还剩多少个字符没有匹配
             tmp[i] = Math.max(tmp[i] - ints[i], 0);
         }
         // 当前字符串没办法减少目标字符串 没有使用当前贴纸
@@ -99,7 +110,9 @@ public class DPSpliceString {
     }
     
     /**
-     *
+     * 匹配后 每次从开始贴纸匹配
+     * 从头贴纸开始 每个贴纸使用后从头贴纸再匹配 直到全部匹配
+     * 如果当前贴纸不匹配 跳出当前循环
      * @param useMap   贴纸  固定不变
      * @param targets  目标数组
      * @return
@@ -167,9 +180,11 @@ public class DPSpliceString {
         for (int i = 0; i < useMap.length; i++) {
             // 必须处理有目标开头字符的贴纸 缩小范围
             int[] ints = useMap[i];
+            // 尝试当前贴纸是否有匹配字符首个字符 不存在则不需要当前贴纸
             if (ints[chars[0] - 'a'] == 0 ) {
                 continue;
             }
+            // 收集未完全被贴纸匹配的字符
             StringBuilder sb = new StringBuilder();
             for (int j = 0; j < 26; j++) {
                 if (targets[j] > 0) {
@@ -220,6 +235,7 @@ public class DPSpliceString {
         for (int i = 0; i < useMap.length; i++) {
             // 必须处理有目标开头字符的贴纸 缩小范围
             int[] ints = useMap[i];
+            // 贴纸不存在目标字符首字母
             if (ints[chars[0] - 'a'] == 0 ) {
                 continue;
             }
@@ -289,30 +305,30 @@ public class DPSpliceString {
                 if (!leastOneChar && ints[i] > 0) {
                     leastOneChar = true;
                 }
-                for (int j = 0; j < Math.max(targets[i] - ints[i], 0); j++) {
-                    sb.append((char) (targets[i] + 'a'));
-                }
+            }
+            for (int j = 0; j < Math.max(targets[i] - ints[i], 0); j++) {
+                sb.append((char) (i + 'a'));
             }
         }
         // 当前字符串没办法减少目标字符串 没有使用当前贴纸
         if (!leastOneChar) {
             return process4(useMap, rest, index + 1);
         } else {
-            // 使用当前贴纸 然后继续使用当前贴纸
+            // 使用当前贴纸 然后继续使用当前贴纸 使用则在返回结果+1
             int use1 = process4(useMap, sb.toString(), index);
-            // 不使用当前贴纸 来到下一个贴纸位置
+            // 不使用当前贴纸 来到下一个贴纸位置  不使用结果不变
             int use2 = process4(useMap, rest, index + 1);
             if (use1 == -1 && use2 == -1) {
-                return 0;
+                return -1;
             }
             if (use1 == -1) {
-                return use2 + 1;
+                return use2;
             }
             if (use2 == -1) {
                 return use1 + 1;
             }
             // 那种方案使用贴纸最少
-            return Math.min(use1, use2) + 1;
+            return Math.min(use1 + 1, use2);
         }
     }
     
@@ -348,6 +364,9 @@ public class DPSpliceString {
         if (map.containsKey(key)) {
             return map.get(key);
         }
+        if ("".equals(rest)) {
+            return 0;
+        }
         // 如果来到最后位置 还没有匹配上贴纸 直接返回最大值 表示无解
         if (index == useMap.length) {
             return -1;
@@ -368,29 +387,25 @@ public class DPSpliceString {
                     leastOneChar = true;
                 }
                 for (int j = 0; j < Math.max(targets[i] - ints[i], 0); j++) {
-                    sb.append((char) (targets[i] + 'a'));
+                    sb.append((char) (i + 'a'));
                 }
             }
         }
-        int result = 0;
+        int result = -1;
         // 当前字符串没办法减少目标字符串 没有使用当前贴纸
         if (!leastOneChar) {
-            result = process4(useMap, rest, index + 1);
+            result = process4Cahce(useMap, rest, index + 1, map);
         } else {
-            
             // 使用当前贴纸 然后继续使用当前贴纸
-            int use1 = process4(useMap, sb.toString(), index);
+            int use1 = process4Cahce(useMap, sb.toString(), index, map);
             // 不使用当前贴纸 来到下一个贴纸位置
-            int use2 = process4(useMap, rest, index + 1);
-            if (use1 != -1 || use2 != -1) {
-                if (use1 == -1) {
-                    result = use2 + 1;
-                } else if (use2 == -1) {
-                    result = use1 + 1;
-                } else {
-                    // 那种方案使用贴纸最少
-                    result = Math.min(use1, use2) + 1;
-                }
+            int use2 = process4Cahce(useMap, rest, index + 1, map);
+            if (use1 != -1 && use2 != -1) {
+                result = Math.min(use1 + 1, use2);
+            } else if (use1 != -1) {
+                result = use1 + 1;
+            } else if (use2 != -1) {
+                result = use2;
             }
         }
         map.put(key, result);
