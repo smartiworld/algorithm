@@ -83,6 +83,68 @@ public class MedianTwoSortedArrays {
     }
     
     /**
+     * 假合并
+     * 1.计算两个数组长度  计算出合并后数组是偶数还是奇数 计算下中位数位置
+     * 2.遍历到当前位置的时候 如果是偶数需要 计算当前遍历的数和前位置数和 /2 如果是奇数则直接返回当前位置数
+     * 2.1当前中位数 两个数组都没有走完
+     * 2.2数组1走完 在数组2中找中位数
+     * 2.3数组2走完 在数组1中找中位数
+     * 2.2和2.3只能存在一个条件
+     * @param nums1
+     * @param nums2
+     * @return
+     */
+    public double findMedianSortedArraysOpt(int[] nums1, int[] nums2) {
+        int n = nums1.length + nums2.length;
+        boolean isEven = n % 2 == 0;
+        int mind = n >> 1;
+        int l = 0;
+        int r = 0;
+        int i = 0;
+        // 记录前一位置 当是偶数的时候 需要记录前一字符数字
+        int pre = 0;
+        // 当前位置数字
+        int cur = 0;
+        while (l < nums1.length && r < nums2.length) {
+            cur = nums1[l] <= nums2[r] ? nums1[l++] : nums2[r++];
+            if (i == mind) {
+                if (isEven) {
+                    //return BigDecimal.valueOf(newArr[i] + newArr[i - 1]).divide(BigDecimal.valueOf(2)).doubleValue();
+                    return (double) (cur + pre) / 2;
+                }
+                return cur;
+            }
+            pre = cur;
+            i ++;
+        }
+        while (l < nums1.length) {
+            cur = nums1[l++];
+            if (i == mind) {
+                if (isEven) {
+                    //return BigDecimal.valueOf(newArr[i] + newArr[i - 1]).divide(BigDecimal.valueOf(2)).doubleValue();
+                    return (double) (cur + pre) / 2;
+                }
+                return cur;
+            }
+            pre = cur;
+            i ++;
+        }
+        while (r < nums2.length) {
+            cur = nums2[r++];
+            if (i == mind) {
+                if (isEven) {
+                    //return BigDecimal.valueOf(newArr[i] + newArr[i - 1]).divide(BigDecimal.valueOf(2)).doubleValue();
+                    return (double) (cur + pre) / 2;
+                }
+                return cur;
+            }
+            pre = cur;
+            i ++;
+        }
+        return 0;
+    }
+    
+    /**
      *
      * 从两个数组上分别取出两个切点cut1，cut2
      * 切点左侧l1 l2切点右侧r1 r2
@@ -135,7 +197,7 @@ public class MedianTwoSortedArrays {
                 // 奇数中位数 下标allSize >> 1 数组下标从0开始 中位数则为第allSize >> 1 + 1小数
                 return findKthNumInTwoSortArray(nums1, nums2, (allSize >> 1) + 1);
             }
-            // 偶数中位数 下标allSize >> 1 - 1 和allSize >> 1 数组下标从0开始 中位数则为第（（allSize >> 1） + （allSize >> 1 + 1））/2
+            // 偶数中位数 下标allSize >> 1 - 1 和allSize >> 1 数组下标从0开始 寻找第几大数则需要加1 中位数则为第（（allSize >> 1） + （allSize >> 1 + 1））/2
             return (findKthNumInTwoSortArray(nums1, nums2, allSize >> 1) + findKthNumInTwoSortArray(nums1, nums2, (allSize >> 1) + 1)) / 2D;
         } else if (nums1.length > 0) {
             if ((allSize & 1) == 1) {
@@ -167,13 +229,27 @@ public class MedianTwoSortedArrays {
      * 3.长数组长度<k<=短数组长度+长数组长度
      *   当前场景下两个数组可能是第k个位置元素个数相同 不可能部分加k能部分中位数 计算出为第k-1
      *   所以需要两个数组分别向后移动一位
+     * 例：数字表示下标 数组内部已经排序
+     * sarr=[0,1,2,3]   slen=4
+     * larr=[0,1,2,3,4,5,6,7,8] llen=9
+     * 1. k=2 小于sarr.length  larr 2~8位置不可能 sarr 2~3不可能 sarr 0~1(0~k-1)和larr 0~1(0~k-1) 找出中位数
+     * 2. k=6 大于sarr.length小于larr.length larr 6~8位置和0位置不可能 0最大只能是第5大 sarr全部可用
+     *  此时larr可能的长度为5大于sarr可能长度，需要单独处理larr 1(k-slen-1)位置数字 如果larr[1(k-slen-1)]>=sarr[slen-1] 此时larr 1位置为两个数字第6大数字
+     *  如果larr1<sarr[slen-1] 此时在sarr 0~4和larr 2~5(k-slen~k-1)位置找出中位数
+     * 3. k=12 大于larr.length 小于larr.length+sarr.length larr中0~6不可能sarr中0~1不可能
+     * 此时larr可能长度和sarr可能的长度一致 此时在 sarr 2~3和larr 7~8长度找中位数 此时中位数为第11大
+     * 需要单独处理sarr 2(k-llen-1)位置和larr 7(k-slen-1)位置
+     * 剩余长度在两个数组中找出中位数sarr 3~3(k-llen~slen-1)和larr 8~8(k-slen~llen-1)
+     *
      * @param arr1
      * @param arr2
      * @param k
      * @return
      */
     public int findKthNumInTwoSortArray(int[] arr1, int[] arr2, int k) {
+        // 长度较短数组
         int[] sArr = arr1.length < arr2.length ? arr1 : arr2;
+        // 长度较长数组
         int[] lArr = sArr == arr1 ? arr2 : arr1;
         int s = sArr.length;
         int l = lArr.length;
@@ -206,7 +282,7 @@ public class MedianTwoSortedArrays {
     }
     
     /**
-     * 使用此函数一定保证r1-l1=r2-l2
+     * 使用此函数一定保证r1-l1=r2-l2 返回两个排序数组合并后上中位数
      * 返回两个排序数组 合并后的上中位数 保证两个数组操作的长度相同 r1-l1=r2-l2
      * 1.分别找出两个数组的上中位数 如果两个上中位数相等 直接返回
      * 2.如果数组长度为奇数长度 去处理可能存在上中位数长度较长的数组
@@ -239,8 +315,13 @@ public class MedianTwoSortedArrays {
             if (arr1[mid1] > arr2[mid2]) {
                 // 2数组中位数和1中位数前一个数字比较 如果2数组中位数大于等于1数组中位数前位置 2数组中位数一定时合并后上中位数
                 if (arr2[mid2] >= arr1[mid1 - 1]) {
+                    // arr1 = [2,3,6,7,9] arr2=[1,3,4,5,8]
+                    // 排序后[1,2,3,3,4,5,6,7,8,9] 上中位数为arr2[mid]=4
                     return arr2[mid2];
                 }
+                // arr1 = [2,5,6,7,9] arr2=[1,3,4,5,8]
+                // 排序后[1,2,3,4,5,5,6,7,8,9] arr1[mid1~r1]不可能存在中位数 arr2[l2~mid2]是不可能存在中位数
+                // 需要重新处理arr1前半部分arr1[l1~mid1-1]和arr2后半部分arr2[mid2+1~r2]比较处理
                 return getUpMedian(arr1, l1, mid1 - 1, arr2, mid2 + 1, r2);
             } else {
                 // A[mid1] < B[mid2]
@@ -253,6 +334,8 @@ public class MedianTwoSortedArrays {
         } else {
             // 偶数长度
             if (arr1[mid1] > arr2[mid2]) {
+                // arr1 = [2,4,6,7] arr2=[1,3,4,8] 排序后[1,2,3,4,4,6,7,8]
+                // 此时arr1[mid1+1~r1]不可能存在中位数 arr2[l2~mid2] 此时需要arr1[l1~mid1]和arr2[mid2+1~r2]再次挑出上中位数
                 return getUpMedian(arr1, l1, mid1, arr2, mid2 + 1, r2);
             } else {
                 return getUpMedian(arr1, mid1 + 1, r1, arr2, l2, mid2);
@@ -371,6 +454,7 @@ public class MedianTwoSortedArrays {
         int[] nums2 = {3, 4};
         MedianTwoSortedArrays medianTwoSortedArrays = new MedianTwoSortedArrays();
         System.out.println(medianTwoSortedArrays.findMedianSortedArrays(nums1, nums2));
+        System.out.println(medianTwoSortedArrays.findMedianSortedArraysOpt(nums1, nums2));
         //System.out.println(medianTwoSortedArrays.findMedianSortedArrays2(nums1, nums2));
         System.out.println(medianTwoSortedArrays.findMedianSortedArrays3(nums1, nums2));
         System.out.println(medianTwoSortedArrays.findMedianSortedArrays4(nums1, nums2));
