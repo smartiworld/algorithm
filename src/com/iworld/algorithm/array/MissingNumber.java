@@ -48,13 +48,16 @@ public class MissingNumber {
     
     public int missingNumber(int[] nums) {
         int l = 0;
+        // 缺失数字最大不可能超过数组长度
         int r = nums.length;
         while (l < r) {
             if (nums[l] == l) {
                 l++;
             } else if (nums[l] < l || nums[l] >= r || nums[l] == nums[nums[l]]) {
+                // 当前数如果大于最大值或者小于最小值 或者当前值位置已经存在当前值也就是重复 将当前值发送到最后位置 表示最大可能值在缩小
                 swap(nums, l, --r);
             } else {
+                // 将当前数字发送对应位置上
                 swap(nums, l, nums[l]);
             }
         }
