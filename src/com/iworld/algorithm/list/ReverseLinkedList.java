@@ -45,4 +45,29 @@ public class ReverseLinkedList {
         }
         return pre;
     }
+    
+    public ListNode reverseList2(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        return process(head)[1];
+    }
+    
+    /**
+     * 返回结果listnode数组0位置为前节点 1位置为新链表头节点
+     * 将后面节点next指针指向前节点
+     * 走到链表最后一个节点 开始执行将后面节点next指针指当前节点
+     * 当前节点下一节点指向空
+     * @param head
+     * @return
+     */
+    private ListNode[] process(ListNode head) {
+        if (head.next == null) {
+            return new ListNode[]{head, head};
+        }
+        ListNode[] nexts = process(head.next);
+        nexts[0].next = head;
+        head.next = null;
+        return new ListNode[]{head, nexts[1]};
+    }
 }
