@@ -98,10 +98,12 @@ public class GraphDijkstraHeap<V> {
             if (leftIndex + 1 < size && nodeDistance.get(nodes[leftIndex + 1]) < nodeDistance.get(nodes[leftIndex])) {
                 lessIndex = leftIndex + 1;
             }
-            if (nodeDistance.get(nodes[lessIndex]) < nodeDistance.get(nodes[index])) {
-                swap(index, lessIndex);
+            if (nodeDistance.get(nodes[lessIndex]) >= nodeDistance.get(nodes[index])) {
+                break;
             }
-            leftIndex = (leftIndex << 1) + 1;;
+            swap(index, lessIndex);
+            index = lessIndex;
+            leftIndex = (index << 1) + 1;;
         }
     }
     
