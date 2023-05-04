@@ -87,7 +87,9 @@ public class CourseScheduleII {
         }
         int index = 0;
         LinkedList<Node> queue = new LinkedList<>();
+        // 0~numCourses-1 是需要选择的课程 如果当前需要依赖数组中没有 则直接放在结果数组中
         for (int i = 0; i < numCourses; i++) {
+            // 如果当前需要依赖数组中没有 则直接放在结果数组中
             if (!nodeMap.containsKey(i)) {
                 ans[index++] = i;
             } else {
@@ -112,6 +114,9 @@ public class CourseScheduleII {
     }
     
     public static void main(String[] args) {
+        // {{3,0},{0,1}}
+        // 4
+        // 期望结果{2,1,0,3}
         int[][] prerequisites = {{1,0},{2,0},{3,1},{3,2}};
         int numCourses = 6;
         CourseScheduleII courseScheduleII = new CourseScheduleII();
