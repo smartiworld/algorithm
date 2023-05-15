@@ -33,7 +33,7 @@ package com.iworld.algorithm.strings;
  * https://leetcode.com/problems/longest-substring-without-repeating-characters/
  * @date 2022/6/22 13:20
  */
-public class SubStrWithoutRepeating {
+public class LongestSubStrWithoutRepeating {
     
     public int lengthOfLongestSubstring(String s) {
         if (s == null || s.length() == 0) {
@@ -99,7 +99,7 @@ public class SubStrWithoutRepeating {
     }
     
     public static void main(String[] args) {
-        SubStrWithoutRepeating subStrWithoutRepeating = new SubStrWithoutRepeating();
+        LongestSubStrWithoutRepeating subStrWithoutRepeating = new LongestSubStrWithoutRepeating();
         String s = "abba";
         System.out.println(subStrWithoutRepeating.lengthOfLongestSubstring(s));
         System.out.println(subStrWithoutRepeating.lengthOfLongestSubstring2(s));
