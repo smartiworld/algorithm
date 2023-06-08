@@ -34,6 +34,15 @@ public class GenerateParentheses {
         return result;
     }
     
+    /**
+     *
+     * @param dn       总长度
+     * @param stack    废弃
+     * @param index    记录未匹配的左括号长度 控制当前位置是填左括号还是可以填右括号
+     * @param sb       当前填充括号路径
+     * @param result   结果集
+     * @param i        填充括号位置 当来到最后位置时结束
+     */
     private void process(int dn, char[] stack, int index, StringBuilder sb, List<String> result, int i) {
         if (i == dn) {
             result.add(sb.toString());
@@ -41,7 +50,7 @@ public class GenerateParentheses {
         }
         if (index == 0) {
             sb.append("(");
-            stack[index] = '(';
+            //stack[index] = '(';
             process(dn, stack, index + 1, sb, result, i + 1);
             sb.deleteCharAt(sb.length() - 1);
         } else {
@@ -50,7 +59,7 @@ public class GenerateParentheses {
             sb.deleteCharAt(sb.length() - 1);
             if (index + i < dn) {
                 sb.append("(");
-                stack[index] = '(';
+                //stack[index] = '(';
                 process(dn, stack, index + 1, sb, result, i + 1);
                 sb.deleteCharAt(sb.length() - 1);
             }
@@ -63,9 +72,17 @@ public class GenerateParentheses {
         return list;
     }
     
+    /**
+     *
+     * @param list   结果
+     * @param sb     单次结果
+     * @param open   左括号长度
+     * @param close  右括号长度
+     * @param max    需要组成括号对
+     */
     public void backtrack(List<String> list, StringBuilder sb, int open, int close, int max){
         
-        if(sb.length() == max*2){
+        if(sb.length() == max * 2){
             list.add(sb.toString());
             return;
         }
@@ -84,6 +101,15 @@ public class GenerateParentheses {
         return result;
     }
     
+    /**
+     *
+     * @param dn       总长度
+     * @param stack    废弃
+     * @param index    记录未匹配的左括号长度 控制当前位置是填左括号还是可以填右括号
+     * @param sb       当前填充括号路径
+     * @param result   结果集
+     * @param i        填充括号位置 当来到最后位置时结束
+     */
     private void process3(int dn, char[] stack, int index, StringBuilder sb, List<String> result, int i) {
         if (i == dn) {
             result.add(sb.toString());
@@ -91,7 +117,7 @@ public class GenerateParentheses {
         }
         if (index == 0 || index + i < dn) {
             sb.append("(");
-            stack[index] = '(';
+            //stack[index] = '(';
             process3(dn, stack, index + 1, sb, result, i + 1);
             sb.deleteCharAt(sb.length() - 1);
         }
@@ -106,6 +132,7 @@ public class GenerateParentheses {
         GenerateParentheses generateParentheses = new GenerateParentheses();
         int n = 3;
         System.out.println(generateParentheses.generateParenthesis(n));
+        //System.out.println(generateParentheses.generateParenthesis2(n));
         System.out.println(generateParentheses.generateParenthesis3(n));
     }
 }
