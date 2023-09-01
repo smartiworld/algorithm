@@ -29,6 +29,7 @@ package com.iworld.algorithm.array;
  * 1 <= m + n <= 2000
  * -106 <= nums1[i], nums2[i] <= 106
  * https://leetcode.com/problems/median-of-two-sorted-arrays/
+ * 4.4.2
  * @date 2022/6/22 14:43
  */
 public class MedianTwoSortedArrays {
@@ -282,6 +283,7 @@ public class MedianTwoSortedArrays {
     }
     
     /**
+     * 返回两个排序等长数组  上中位数
      * 使用此函数一定保证r1-l1=r2-l2 返回两个排序数组合并后上中位数
      * 返回两个排序数组 合并后的上中位数 保证两个数组操作的长度相同 r1-l1=r2-l2
      * 1.分别找出两个数组的上中位数 如果两个上中位数相等 直接返回
