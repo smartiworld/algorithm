@@ -43,7 +43,9 @@ public class NimGame {
         if (n <= 3) {
             return true;
         }
+        // 下标表示石头数量-1 true表示赢 当前数组表示先手输赢
         boolean[] f = new boolean[n];
+        // 到后手时 自己输赢
         boolean[] s = new boolean[n];
         f[0] = true;
         f[1] = true;
@@ -52,7 +54,9 @@ public class NimGame {
         s[1] = false;
         s[2] = false;
         for (int i = 3; i < n; i++) {
+            // 每人可以拿1-3 所以当前先手为i时依赖后手分别取一个，两个，三个 自己在后手赢
             f[i] = s[i - 1] || s[i - 2] || s[i - 3];
+            // 如果先手赢 后手则输
             s[i] = !f[i];
         }
         return f[n - 1];
@@ -90,6 +94,12 @@ public class NimGame {
         return process(n);
     }
     
+    /**
+     * 先手依赖后手操作
+     * f(i) 依赖s(i-1) s(i-2) s(i-3)
+     * @param n
+     * @return
+     */
     private boolean process(int n) {
         if (n <= 3) {
             return true;
