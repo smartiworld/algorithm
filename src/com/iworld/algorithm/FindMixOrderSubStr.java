@@ -35,6 +35,7 @@ public class FindMixOrderSubStr {
         String result = "";
         char[] cs = s.toCharArray();
         char[] ct = t.toCharArray();
+        // 存放被查找字符串数组，数组下标为字符
         int[] minLenPositions = new int[s.length()];
         for (int x = 0; x <= s.length() - t.length(); x++) {
             int tp = 0;

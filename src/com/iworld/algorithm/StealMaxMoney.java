@@ -42,7 +42,7 @@ package com.iworld.algorithm;
  *
  * 输入: [3,4,5,1,3,null,1]
  *
- *      3
+ *   3
  *     / \
  *    4   5
  *   / \   \
@@ -60,6 +60,15 @@ public class StealMaxMoney {
         int r = 0;
         System.out.println(++r);
         System.out.println(r);
+        
+    }
+    class Parent{
+        public int getLength() {return 4;}
+    }
+    
+    class Sub extends Parent {
+    
+    
     }
 
 

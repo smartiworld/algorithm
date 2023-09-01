@@ -3,12 +3,13 @@ package com.iworld.algorithm;
 /**
  * 翻转数组
  *
- * @Autor iworld
+ * @author iworld
  * @Date 2020-05-25 18:06
  */
-public class ReverseArray {
+public class RevertArray {
 
     public static void main(String[] args) {
-        
+    
     }
+    
 }

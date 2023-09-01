@@ -20,10 +20,14 @@ public class EuclidsAlgorithm {
         if(n == 0){
             return m;
         }
-        if(m%n == 0){
+        if(m % n == 0){
             return n;
         }
-        int heigjtDivisor = getHeightDivisor(n, m%n);
+        int heigjtDivisor = getHeightDivisor(n, m % n);
         return heigjtDivisor;
+    }
+    
+    public int getHeightDivisor2(int m, int n){
+        return n == 0 ? m : getHeightDivisor2(n, m % n);
     }
 }

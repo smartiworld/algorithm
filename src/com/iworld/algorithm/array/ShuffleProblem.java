@@ -62,6 +62,18 @@ public class ShuffleProblem {
         }
     }
     
+    /**
+     * 数组从m+1~r位置的元素和l~m位置交换位置
+     * [0,1,2,3,4,5,6,7,8]m=3
+     * 需要结果[4,5,6,7,8,0,1,2,3]
+     * [l~m]0位置到3位置反转[3,2,1,0,4,5,6,7,8]
+     * [m+1~r]4位置到8位置反转[3,2,1,0,8,7,6,5,4]
+     * [l~r]0位置到8位置反转[4,5,6,7,8,0,1,2,3]
+     * @param arr
+     * @param l
+     * @param m
+     * @param r
+     */
     private void rotate(int[] arr, int l, int m, int r) {
         revert(arr, l, m);
         revert(arr, m + 1, r);
@@ -96,18 +108,37 @@ public class ShuffleProblem {
             int preValue = arr[trigger + l - 1];
             int cur = getIndex(trigger, len);
             while (cur != trigger) {
+                // 需要去的下一个位置值
                 int tmp = arr[cur + l - 1];
+                // 将当前要推的值放入到下一个位置上
                 arr[cur + l - 1] = preValue;
+                // 下一个位置值 放入当前值记录
                 preValue = tmp;
+                // 计算来到的下一个位置 计算下一个位置的时候是完美洗牌的位置从1开始，计算数组实际位置的时候将当前值-1
                 cur = getIndex(cur, len);
             }
+            // 来到初始位置 将
             arr[cur + l - 1] = preValue;
         }
     }
     
+    /**
+     * 计算位置下标从1开始 实际使用需要多减个1
+     * 例：{1,2,3,4,5,6,7,8}需要循环推理2次
+     * 第一次 开始位置1 3^(k-1)k=1
+     * 小于等于长度一半位置的循环位置去向 1->2, 2->4, 4->8
+     * 大于长度一半位置循环 8->7, 7->5, 5->1 等于了开始位置 结束
+     * 第二次开始位置3 3^(k-1)k=2
+     * 小于等于长度一半位置循环位置去向 3->6
+     * 大于长度一半位置循环 6->3 等于开始位置结束
+     * @param i
+     * @param len
+     * @return
+     */
     private int getIndex2(int i, int len) {
         int n = len >> 1;
         if (i > n) {
+            // 大于
             return (i - n) * 2 - 1;
         } else {
             return 2 * i;
@@ -128,6 +159,7 @@ public class ShuffleProblem {
         int[] arr = {1,2,3,4,5,6,7,8};
         ShuffleProblem shuffleProblem = new ShuffleProblem();
         shuffleProblem.shuffle(arr);
+        //shuffleProblem.rotate(arr, 0, 3, 8);
         for (int i : arr) {
             System.out.print(i + ",");
         }

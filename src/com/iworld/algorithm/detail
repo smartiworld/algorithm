@@ -1,0 +1,215 @@
+20220901
+SearchA2DMatrixII  https://leetcode.com/problems/search-a-2d-matrix-ii/     二维排序数组中查找目标值
+EvaluateReversePolishNotation  https://leetcode.com/problems/evaluate-reverse-polish-notation/   栈  根据数组中符号倒序计算
+20220902
+RotateArray https://leetcode.com/problems/rotate-array/
+ContainsDuplicate https://leetcode.com/problems/contains-duplicate/    堆结构
+MaximumProductSubarray https://leetcode.com/problems/maximum-product-subarray/   计算子数组最大乘积
+MinStack   https://leetcode.com/problems/min-stack/    最小栈 获取栈中最小元素 O(1)
+20220903
+IntersectionOfTwoLinkedLists   https://leetcode.com/problems/intersection-of-two-linked-lists/  检查五环链表相交点
+FractionToRecurringDecimal    https://leetcode.com/problems/fraction-to-recurring-decimal/    处理分数 小数点后循环小数
+MajorityElement   https://leetcode.com/problems/majority-element/   找出数组中超过一半数量的数
+ExcelSheetColumnNumber  https://leetcode.com/problems/excel-sheet-column-number/   字符转数字
+20220905
+NumberOf1Bits    https://leetcode.com/problems/number-of-1-bits/   计算数字二进制1的数量
+20220906
+NumberOfIslands    https://leetcode.com/problems/number-of-islands/   岛问题 岛数量
+HappyNumber    https://leetcode.com/problems/happy-number/
+CourseSchedule    https://leetcode.com/problems/course-schedule/
+20220911
+ValidAnagram   https://leetcode.com/problems/valid-anagram/    字符串字符匹配校验
+MissingNumber   https://leetcode.com/problems/missing-number/  数组缺失最小数字
+20220914
+KthLargestElementInAnArray   https://leetcode.com/problems/kth-largest-element-in-an-array/    数组中找出第k大元素
+20220915
+WordSearchII    https://leetcode.com/problems/word-search-ii/     矩阵中搜索字符串
+20220922
+WordBreak      https://leetcode.com/problems/word-break/    字符串中字符是否可以从字典中查出 前缀树匹配
+20220926
+WordBreak      https://leetcode.com/problems/word-break/    字符串中字符是否可以从字典中查出 前缀树匹配
+20220927
+FactorialTrailingZeroes   https://leetcode.com/problems/factorial-trailing-zeroes/   n得阶乘结果尾有多少个0
+20220928
+ImplementTriePrefixTree   https://leetcode.com/problems/implement-trie-prefix-tree/  前缀树
+https://github.com/algorithmzuo/trainingcamp004/blob/master/src/class02/Code01_BestTimetoBuyandSellStock1.java
+BestTimeToBuyAndSellStock https://leetcode.com/problems/best-time-to-buy-and-sell-stock/   4.2.1 股票买卖  只能交易一次  卖一定在买后
+20220929
+https://github.com/algorithmzuo/trainingcamp004/blob/master/src/class02/Code02_BestTimetoBuyandSellStock2.java
+BestTimeToBuyAndSellStockII   https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/  4.2.2 股票买卖 可以做无限次交易
+https://github.com/algorithmzuo/trainingcamp004/blob/master/src/class02/Code03_BestTimetoBuyandSellStockFollow.java
+BestTimeToBuyAndSellStockIII  https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/ 4.2.3 股票买卖 可以做两次交易
+20220930
+BestTimeToBuyAndSellStockIV   https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/  股票买卖 可以做指定k次交易
+CourseScheduleII     https://leetcode.com/problems/course-schedule-ii/    选课安排  按顺返回要选择的课程
+20221002
+KthSmallestElementInBST    https://leetcode.com/problems/kth-smallest-element-in-a-bst/     搜索二叉树第k小的数
+20221003
+PalindromeLinkedList     https://leetcode.com/problems/palindrome-linked-list/    回文链表
+LowestCommonAncestorOfBinaryTree   https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/   两节点最近公共祖先
+20221004
+DeleteNodeInLinkedList    https://leetcode.com/problems/delete-node-in-a-linked-list/   从单链表上删除给定节点 节点不会是尾节点
+ProductOfArrayExceptSelf   https://leetcode.com/problems/product-of-array-except-self/  除当前位置 数组中其他位置乘积
+SlidingWindowMaximum    https://leetcode.com/problems/sliding-window-maximum/      窗口内最大值 滑动窗口
+20221005
+BasicCalculatorIII                                          字符串运算 包含小括号
+MoveZeroes      https://leetcode.com/problems/move-zeroes/     将0字符串移动到数组右侧 保证原顺序
+20221006
+FindTheDuplicateNumber   https://leetcode.com/problems/find-the-duplicate-number/   数组中查找重复数字
+20221009
+ReverseString           https://leetcode.com/problems/reverse-string/   反转字符串
+20221010
+GameOfLife         https://leetcode.com/problems/game-of-life/   游戏人生
+FindMedianFromDataStream   https://leetcode.com/problems/find-median-from-data-stream/  数据流中位数
+20221011
+SerializeAndDeserializeBinaryTree   https://leetcode.com/problems/serialize-and-deserialize-binary-tree/  序列化反序列化
+LongestIncreasingSubsequence     https://leetcode.com/problems/longest-increasing-subsequence/submissions/  最长递增子序列
+20221012
+CountOfSmallerNumbersAfterSelf    https://leetcode.com/problems/count-of-smaller-numbers-after-self/  返回数组右边小于自己数字个数
+CoinChange                   https://leetcode.com/problems/coin-change/    使用最少钱币数量拼凑给定金额
+PowerOfThree   https://leetcode.com/problems/power-of-three/  3的整数次幂
+20221013
+IndexTree
+RangeSumQuery2DMutable      计算可变矩阵范围和
+20221014
+FizzBuzz    https://leetcode.com/problems/fizz-buzz/submissions/    FizzBuzz
+ShuffleProblem                   完美洗牌
+20221017
+LongestIncreasingPathInMatrix     https://leetcode.com/problems/longest-increasing-path-in-a-matrix/   矩阵中最长升序字符长度
+IncreasingTripletSubsequence      https://leetcode.com/problems/increasing-triplet-subsequence/     数组中存在从左到右递增数字
+20221018
+FlattenNestedListIterator     https://leetcode.com/problems/flatten-nested-list-iterator/   迭代器
+TopKFrequentElements       https://leetcode.com/problems/top-k-frequent-elements/   出现频率前k次高的数
+20221019
+IntersectionOfTwoArraysII    https://leetcode.com/problems/intersection-of-two-arrays-ii/   数组交集
+SumOfTwoIntegers    https://leetcode.com/problems/sum-of-two-integers/    不使用运算符计算两数和
+InsertDeleteGetRandom   https://leetcode.com/problems/insert-delete-getrandom-o1/    增加删除获取random val 时间复杂度O(1)
+20221020
+ShuffleAnArray    https://leetcode.com/problems/shuffle-an-array/   随机数组
+FirstUniqueCharacterInString    https://leetcode.com/problems/first-unique-character-in-a-string/   字符串首次不重复字符
+LongestSubstringWithAtLeastKRepeatingCharacters https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/    获取重复k次最长字串
+NQueens     https://leetcode.com/problems/n-queens/     N皇后摆放位置
+20221031
+SwapNodesInPairs    https://leetcode.com/problems/swap-nodes-in-pairs/  链表两两互换位置
+20221113
+StringToIntegerAtoi https://leetcode.com/problems/string-to-integer-atoi/  字符串转换为整型
+20221116
+RomanToInteger    https://leetcode.com/problems/roman-to-integer/   13.罗马数字转换为数字
+IntegerToRoman    https://leetcode.com/problems/integer-to-roman/   数字转罗马数字
+20221117
+MonotonousStack     单调栈
+20221118
+LargestRectangleInHistogram https://leetcode.com/problems/largest-rectangle-in-histogram/ 计算数组中各位置所占最大面积 单调栈
+20221119
+ClimbingStairs   https://leetcode.com/problems/climbing-stairs/  爬楼梯  快速幂
+20221121
+CowProblem  奶牛产仔  快速幂
+20221122
+SudokuSolver https://leetcode.com/problems/sudoku-solver/  解决数独
+20221124
+OneZeroOrdered   0 1排列 0的左边必须是1  快速幂
+20221125
+ImplementRand10UsingRand7  https://leetcode.com/problems/implement-rand10-using-rand7/ 给定一个1-7的随机函数 构造一个随机返回1-10的函数
+20221130
+JumpGameIIIFollow  跳跃游戏3 给定开始位置跳到结束位置
+JumpGameIII https://leetcode.com/problems/jump-game-iii/   跳跃游戏3 给定开始位置跳到index值为0的位置 宽度优先
+20221204
+ColorLeftRight    红绿调色使每个红色离左边都比绿色近 返回最小调色个数
+20221206
+MakeNo    给定长度size 任意i<j<k 生成数组arr[i]+arr[k]!=arr[j]的数组
+20221226
+TrappingRainWater  https://leetcode.com/problems/trapping-rain-water/   可以盛放多少雨水
+SegmentCoverPoint  线段覆盖最大点数量
+SuperWashingMachines   https://leetcode.com/problems/super-washing-machines/  超级洗衣机
+20221230
+ChooseWork     选择最优报酬工作
+20230110
+CountCompleteTreeNodes    https://leetcode.com/problems/count-complete-tree-nodes/    计算完全二叉树节点个数 时间复杂度小于O(n)
+20230206
+PalindromeMinAdd    字符串任意位置可以添加字符 最少添加多少个字符可以将字符串拼接成回文串 返回拼接成功的回文串
+20230215
+LongestNoRepeatSubstring  返回字符串中无重复字符最长字符串长度
+20230302
+DungeonGame               4.2.5 地下城游戏   https://leetcode.com/problems/dungeon-game/
+20230306
+SnakeGame                 贪吃蛇游戏
+20230307
+ExpressionCompute         计算字符串表达式
+20230308
+SplitNumber               分裂数字 有多少种不同的分裂方式
+20230313
+VisibleMountains          可见山峰对
+20230314
+MaxSubArraySumLessOrEqualK   4.1.2 最大接近于k的子数组累加和
+MaxSubMatrixSumNoLargerThanK 4.1.3 最大接近于k的子矩阵累加和
+WordSearchII                 4.1.4 字符数组搜索
+https://leetcode.com/problems/word-search-ii/  https://github.com/algorithmzuo/leetcode-top-interview-questions/blob/master/src/topinterviewquestions/Problem_0212_WordSearchII.java
+https://github.com/algorithmzuo/trainingcamp004/blob/master/src/class01/Code04_WordSearch.java
+20230315
+ExpressionAddOperators       4.1.5 给表达式添加运算符
+https://github.com/algorithmzuo/trainingcamp004/blob/master/src/class01/Code05_ExpressionAddOperators.java
+2023020
+https://github.com/algorithmzuo/leetcode-top-interview-questions/blob/master/src/topinterviewquestions/Problem_0309_BestTimeToBuyAndSellStockWithCooldown.java
+BestTimeToBuyAndSellStockWithCoolDown    冷静股票买卖不限次数
+MaxGap                                   4.3.1数组排序后前后最大间隙
+20230410
+DPSingleParentheses https://leetcode.com/problems/longest-valid-parentheses/description/    最长有效括号长度
+DpRegularExpressionMatching  https://leetcode.com/problems/regular-expression-matching/     10.字符串匹配
+给定两个字符串S和T，返回S子序列等于T的不同子序列个数有多少个? 如果得到子序列A删除的位置与得到子序列B删除的位置不同，那么认为A和B就是不同的。
+20230411
+DPSpliceString      最少使用多少片贴纸拼出目标字符 贴纸可以重复使用
+20230415
+MedianTwoSortedArrays  https://leetcode.com/problems/median-of-two-sorted-arrays/ 4.在两个排序数组中找出排序后上中位数 O(log(m+n))
+20230416
+LongestPalindromicSubstring    https://leetcode.com/problems/longest-palindromic-substring/  5.获取字符串最长回文子串
+RevertInteger                  https://leetcode.com/problems/reverse-integer/           7.反转int整数
+ContainerWithMostWater         https://leetcode.com/problems/container-with-most-water/ 11.盛放最多的水
+LongestCommonPrefix            https://leetcode.com/problems/longest-common-prefix/     14.字符数组最长前缀
+20230417
+ThreeSumZero                   https://leetcode.cn/problems/3sum                        15.三数之和等于0
+LetterCombinationsPhoneNumber  https://leetcode.com/problems/letter-combinations-of-a-phone-number/   17.组合手机键盘字母
+20230417
+MergeKSortedLists              https://leetcode.com/problems/merge-k-sorted-lists/                    88.合并k个排序单链表
+ReverseNodesInKGroup           https://leetcode.com/problems/reverse-nodes-in-k-group/                25.反转每k组链表
+RemoveNthNodeFromEndList       https://leetcode.com/problems/remove-nth-node-from-end-of-list/        19.删除倒数第n个链表
+20230421
+ConstructBinaryTreeFromPreorderAndInorderTraversal   https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/  105.给定二叉树的先序和中序遍历构造二叉树
+MergeKSortedLists         多个有序链表合并为一个有序链表
+20230423
+ReverseLinkedList              https://leetcode.com/problems/reverse-linked-list/                     206.反转链表
+MergeSortedArray               https://leetcode.com/problems/merge-sorted-array/                      80.合并两个排序数组到一个数组
+MissingNumber                  https://leetcode.com/problems/missing-number/                          268.缺失的数字
+20230505
+NQueens                        https://leetcode.com/problems/n-queens/                                51.N皇后
+20230509
+TrappingRainWaterII            https://leetcode.com/problems/trapping-rain-water-ii/                  407.三维接雨水
+20230515
+LongestSubStrWithoutRepeating  https://leetcode.com/problems/longest-substring-without-repeating-characters/ 3.最长无重复字符子串
+20230524
+KthSmallestElementInSortedMatrix  https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/      378.排序矩阵中第k小的数
+20230603
+RemoveBoxes                    https://leetcode.com/problems/remove-boxes/                            546.移除箱子最大得分
+20230610
+TSP                            旅行商问题
+
+【例子】
+S = "rabbbit", T = "rabbit"
+返回: 3
+是以下三个S的不同子序列，没有^的位置表示删除的位置，因为删除的位置不同，所以这三 个子序列是不一样的
+rabbbit
+I I   I I II
+rabbbit
+I I I   I II
+rabbbit
+I I I I   IIhttps://leetcode.cn/problems/kth-largest-element-in-an-array/
+
+给定一个无序数组arr，返回如果排序之后，相邻数之间的最大差值
+
+{3,1,7,9}，如果排序后{1,3,7,9}，相邻数之间的最大差值来自3和7，返回4
+
+要求：不能真的进行排序，并且要求在时间复杂度O(N)内解决
+
+
+
+
+

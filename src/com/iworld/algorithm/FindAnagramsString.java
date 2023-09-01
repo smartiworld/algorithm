@@ -89,9 +89,13 @@ public class FindAnagramsString {
 
     public List<Integer> findAnagrams(String s, String p) {
         List<Integer> anarams = new ArrayList<>();
-        if (s.length() < p.length()) return anarams;  // 排除不可能的情况
+        if (s.length() < p.length()) {
+            return anarams;  // 排除不可能的情况
+        }
         int[] matchStrCounts = new int[26];
-        for (int i = 0; i < p.length(); i++) matchStrCounts[p.charAt(i) - 'a']++;
+        for (int i = 0; i < p.length(); i++) {
+            matchStrCounts[p.charAt(i) - 'a']++;
+        }
         int[] sStrCounts = new int[26];
         int left = 0, right = 0;   // [l, r]区间是我们需要判定的区间，但是只需要扫描频率数组即可。
         while (left <= s.length() - p.length()) {
@@ -100,8 +104,11 @@ public class FindAnagramsString {
                 sStrCounts[s.charAt(right ++) - 'a']++; continue;
             }
             int i;
-            for (i = 0; i < 26 && sStrCounts[i] == matchStrCounts[i]; i++);
-            if (i == 26) anarams.add(left);  // 符合条件
+            for (i = 0; i < 26 && sStrCounts[i] == matchStrCounts[i]; i++) {
+                if (i == 26) {
+                    anarams.add(left);  // 符合条件
+                }
+            }
             sStrCounts[s.charAt(left ++) - 'a']--; // 缩小窗口
         }
         return anarams;
