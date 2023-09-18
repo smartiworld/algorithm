@@ -3,7 +3,7 @@ package com.iworld.algorithm.array;
 /**
  * @author gq.cai
  * @version 1.0
- * @description 完美洗牌
+ * @description 4.6.4 完美洗牌
  * 当数组长度满足3^k-1长度  数组可以通过k次得出洗牌后结果
  * 1.当数组长度满足3^k-1的时候 出发点就为个k  并且所有每次出发点为3^(k-1) k取值0~k
  * 2.如果数组长度不为3^k-1 则找到最接近小于数组长度的3^k-1的值
