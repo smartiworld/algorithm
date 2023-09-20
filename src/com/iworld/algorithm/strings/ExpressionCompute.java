@@ -7,11 +7,11 @@ import java.util.LinkedList;
 /**
  * @author gq.cai
  * @version 1.0
- * @description 给定一个字符串str，str表示一个公式，公式里面可能有数字、加减乘除和左右括号，返回公式计算结果
+ * @description 4.5.3
+ * 给定一个字符串str，str表示一个公式，公式里面可能有数字、加减乘除和左右括号，返回公式计算结果
  * 例1：3+1*5 结果返回8
  * 例2：3+2*（1+3） 结果返回11
  * 可以认为公式是合法有效公式 如果是负数并且不在开头位置就需要用括号括起来
- * https://github.com/algorithmzuo/trainingcamp004/blob/master/src/class05/Code03_ExpressionCompute.java
  * @date 2023/3/7 17:44
  */
 public class ExpressionCompute {
