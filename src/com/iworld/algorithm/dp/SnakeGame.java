@@ -229,7 +229,6 @@ public class SnakeGame {
             int ans4 = walkDp(matrix);
             int ans2 = snakeGame.walkEnd(matrix);
             int ans3 = snakeGame.walkEndDp(matrix);
-            int ans5 = walkTailDp(matrix);
 //            if (ans1 != ans2) {
 //                for (int j = 0; j < matrix.length; j++) {
 //                    System.out.println(Arrays.toString(matrix[j]));
@@ -249,13 +248,6 @@ public class SnakeGame {
                     System.out.println(Arrays.toString(matrix[j]));
                 }
                 System.out.println("Oops   ans1: " + ans1 + "   ans4:" + ans4);
-                break;
-            }
-            if (ans1 != ans5) {
-                for (int j = 0; j < matrix.length; j++) {
-                    System.out.println(Arrays.toString(matrix[j]));
-                }
-                System.out.println("Oops   ans1: " + ans1 + "   ans5:" + ans5);
                 break;
             }
         }
