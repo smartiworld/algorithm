@@ -32,14 +32,15 @@ public class SnakeGame {
     /**
      * 返回结果 数组第一个是没有使用超能力 第二个位置是没有使用超能力
      * @param matrix
-     * @param r
-     * @param c
-     * @param row
-     * @param col
+     * @param r        来到行位置
+     * @param c        来到列位置
+     * @param row      总的行数
+     * @param col      总的列数
      * @return
      */
     private int[] process(int[][] matrix, int r, int c, int row, int col) {
         if (c == col - 1) {
+            // 来到最左侧 使用超能力和不使用超能力
             return new int[]{matrix[r][c], -matrix[r][c]};
         }
         int[] next = process(matrix, r, c + 1, row, col);
@@ -65,6 +66,11 @@ public class SnakeGame {
         return new int[]{noUse, use};
     }
     
+    /**
+     * 必须从头开始走
+     * @param matrix
+     * @return
+     */
     public int walkEndDp(int[][] matrix) {
         int row = matrix.length;
         int col = matrix[0].length;
@@ -223,6 +229,7 @@ public class SnakeGame {
             int ans4 = walkDp(matrix);
             int ans2 = snakeGame.walkEnd(matrix);
             int ans3 = snakeGame.walkEndDp(matrix);
+            int ans5 = walkTailDp(matrix);
 //            if (ans1 != ans2) {
 //                for (int j = 0; j < matrix.length; j++) {
 //                    System.out.println(Arrays.toString(matrix[j]));
@@ -242,6 +249,13 @@ public class SnakeGame {
                     System.out.println(Arrays.toString(matrix[j]));
                 }
                 System.out.println("Oops   ans1: " + ans1 + "   ans4:" + ans4);
+                break;
+            }
+            if (ans1 != ans5) {
+                for (int j = 0; j < matrix.length; j++) {
+                    System.out.println(Arrays.toString(matrix[j]));
+                }
+                System.out.println("Oops   ans1: " + ans1 + "   ans5:" + ans5);
                 break;
             }
         }
