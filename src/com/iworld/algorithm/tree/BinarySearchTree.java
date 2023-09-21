@@ -121,7 +121,7 @@ public class BinarySearchTree {
         // 所树为空或者左树是二叉搜索树并且左树最大值小于当前值 并且
         // 右树为空或者右树为二叉搜索树并且右树的最小值大于当前值
         if ((leftTreeInfo == null || (leftTreeInfo.isBST && leftTreeInfo.max < head.value))
-                && (rightTreeInfo == null || (leftTreeInfo.isBST && rightTreeInfo.min > head.value))) {
+                && (rightTreeInfo == null || (rightTreeInfo.isBST && rightTreeInfo.min > head.value))) {
             isBST = true;
             size = (leftTreeInfo == null ? 0 : leftTreeInfo.size)
                     + (rightTreeInfo == null ? 0 : rightTreeInfo.size) + 1;
