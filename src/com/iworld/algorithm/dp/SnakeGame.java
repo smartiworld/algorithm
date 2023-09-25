@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * @author gq.cai
  * @version 1.0
- * @description 贪吃蛇游戏
+ * @description 4.5.2 贪吃蛇游戏
  * 一个二维数组每个格子可以为正可以为负，一只小蛇从第一列任何任何位置出发，遇到正数直接增加长度，负数减少长度 走下一个位置时只能走右上，右和右下
  * 小蛇有个超能力，能使当前位置值 变为相反数，只能使用一次超能力 任何时候长度为负数则结束
  * https://github.com/algorithmzuo/trainingcamp004/blob/master/src/class05/Code02_SnakeGame.java
