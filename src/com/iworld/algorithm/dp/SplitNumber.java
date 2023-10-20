@@ -1,9 +1,11 @@
 package com.iworld.algorithm.dp;
 
+import java.util.Random;
+
 /**
  * @author gq.cai
  * @version 1.0
- * @description 给定一个整数 计算有多少种裂开方式 自己算一种 数字无顺序要求 相同个数的数字算一种
+ * @description 4.6.1 给定一个整数 计算有多少种裂开方式 自己算一种 数字无顺序要求 相同个数的数字算一种
  * 例1： 1 裂开方式有一种1
  * 例2： 3 裂开方式 {1，1，1} {1，2} {3} 3种  {1.2}和{2，1}属于同种类
  * https://github.com/algorithmzuo/trainingcamp004/blob/master/src/class06/Code01_SplitNumer1.java
@@ -38,13 +40,14 @@ public class SplitNumber {
     public int splitDp(int num) {
         // pre做行 rest做列 0行弃用  下半矩阵都是0
         int[][] dp = new int[num + 1][num + 1];
-        // rest=0 dp=1 第一列结果都是1
+        // rest=0表示剩余没有未拆的数字 dp=1 第一列结果都是1
         for (int i = 0; i <= num; i++) {
             dp[i][0] = 1;
         }
         for (int i = num; i >= 1; i--) {
             for (int j = i; j <= num; j++) {
                 int ans = 0;
+                // 从i开始 最大不能超过剩余数j
                 for (int k = i; k <= j; k++) {
                     ans += dp[k][j - k];
                 }
@@ -107,7 +110,22 @@ public class SplitNumber {
             System.out.println(splitNumber.splitDp(i));
             System.out.println(splitNumber.splitDpBest(i));
             System.out.println();
+            System.out.println(Math.random() * 10000);
+        }
+    
+        for (int i = 1; i < 10000; i++) {
+            double random = Math.random();
+            int a = (int)(random * 10000);
+            if (a == 0) {
+                System.out.println(a);
+            }
+            if (a == 9999) {
+                System.out.println(a);
+            }
+            Random r = new Random();
+            int n = r.nextInt(10000);
         }
         
     }
+    
 }
