@@ -3,7 +3,7 @@ package com.iworld.algorithm.dp.string;
 /**
  * @author gq.cai
  * @version 1.0
- * @description 给定一个字符串，如果可以在字符串任意位置添加字符最少添加几个可以让字符串整体是回文串
+ * @description 3.8.6 给定一个字符串，如果可以在字符串任意位置添加字符最少添加几个可以让字符串整体是回文串
  * https://github.com/algorithmzuo/trainingcamp003/blob/master/src/class08/Code06_PalindromeMinAdd.java
  * @date 2023/2/6 13:07
  */
@@ -14,7 +14,7 @@ public class PalindromeMinAdd {
      * l-r 字符串开头l和字符串结尾r
      * 动态规划表 表示l-r形成回文串 最少需要添加几个字符 只填右上部分 l<=r
      * 动态转移
-     * 1.l~r范围 先处理l~r-1范围 再补r 在l-1的位置 dp[l][r - 1]
+     * 1.l~r范围 先处理l~r-1范围 再补r 在l-1的位置 dp[l][r - 1] + 1
      * 2.l~r范围 先处理l+1~r范围 再补l 在r+1的位置 dp[l + 1][r] + 1
      * 3.l~r范围 l和r位置字符相等 处理l+1~r-1范围  dp[l + 1][r - 1]
      * @param str
@@ -52,6 +52,14 @@ public class PalindromeMinAdd {
     
     /**
      * 原字符串拼成回文串 使用最少字符 返回拼接好的回文串
+     *    0  1  2  3
+     * 0  a  b  c  d
+     * 1     w  e  r
+     * 2        q  x
+     * 3           y
+     * 从最后位置右上角数值开始反推 对比当前位置的左侧和下测 挑选较小位置的位置 填充对应处理的字符
+     *   例：r<c 此时d一定是从r推出也就是dp[1][3]的值此时固定0位置字符 填充与之相等字符
+     * 然后按照上述步骤 直到行或着列走完
      * @param str
      * @return
      */
@@ -62,7 +70,9 @@ public class PalindromeMinAdd {
         char[] chars = str.toCharArray();
         int len = chars.length;
         int[][] dp = getDp(chars);
+        // 最后需要填的字符 从此位置开始反推
         int min = dp[0][len - 1];
+        // 最后拼接结果字符长度
         char[] res = new char[len + min];
         int left = 0;
         int right = res.length - 1;
