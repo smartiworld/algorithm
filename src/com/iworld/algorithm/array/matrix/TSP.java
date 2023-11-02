@@ -67,6 +67,28 @@ public class TSP {
     
     /**
      * citys 每个bit位表示当前城市是否已经走过1位表示未走
+     * f(0,1111,0)当前来到0号城市
+     * 剩余未走城市1110 状态位
+     * 除去当前城市 所有城市到当前0号城市尝试一遍
+     * 下次城市
+     * f(1,1110,0)
+     *      剩余未走城市1100
+     *      除去当前城市 所有未达到城市尝试
+     *      下次城市
+     *      f(2,1100,0)->f(3,1000,0)
+     *      f(3,1100,0)->f(2,0100,0)
+     * f(2,1110,0)
+     *      剩余未走城市1010
+     *      除去当前城市 所有未达到城市尝试
+     *      下次城市
+     *      f(1,1010,0)->f(3,1000,0)
+     *      f(3,1010,0)->f(1,0010,0)
+     * f(3,1110,0)
+     *      剩余未走城市0110
+     *      除去当前城市 所有未达到城市尝试
+     *      下次城市
+     *      f(1,0110,0)->f(2,0100,0)
+     *      f(2,0110,0)->f(1,0010,0)
      * @param matrix    城市间距离矩阵
      * @param city      当前城市
      * @param citys     当前未走完城市 使用整数位信息1代表还走过当前城市0代表已经走过当前城市
@@ -100,27 +122,28 @@ public class TSP {
         return min;
     }
     
-    /**     0              1           2
-     * 000  X              X           X
-     * 001  0              X           X
-     * 010  X              1->0        X
-     * 011  0->1=0010|1
-     * 100  X              X           2->0
-     * 101  0->2=0100|2
-     * 110  X
-     * 111  0->1=0110|1
-     *      0->2=0110|2
+    /**     0              1             2
+     * 000  X              X             X
+     * 001  0->s           X             X
+     * 010  X              1->s          X
+     * 011  0->1=010|1     1->0=001|0    X
+     * 100  X              X             2->s
+     * 101  0->2=100|2     X             2->0=001|0
+     * 110  X              1->2=100|2    X
+     * 111  0->1=110|1     1->0=101|1    2->0=011|0
+     *      0->2=110|2     1->2=101|2    2->1=011|1
      * @param matrix
      * @return
      */
     public int tspDp(int[][] matrix) {
-        int row = matrix.length;
-        int citys = 1 << row;
-        int[][] dp = new int[citys][row];
-        for (int status = 0; status < citys; status++) {
+        int col = matrix.length;
+        int citys = 1 << col;
+        int[][] dp = new int[citys][col];
+        // 默认从0城市开始
+        for (int status = 1; status < citys; status++) {
             // 当前走的城市
-            for (int city = 0; city < row; city++) {
-                // 表示除了当前位置还有其他城市
+            for (int city = 0; city < col; city++) {
+                // 当前城市还没有走完
                 if ((status & (1 << city)) != 0) {
                     // 当前来到最后一个城市
                     if (1 << city == status) {
@@ -130,7 +153,7 @@ public class TSP {
                         int newCitys = status & (~(1 << city));
                         int min = Integer.MAX_VALUE;
                         // 把status未走完的可达城市走一遍
-                        for (int move = 0; move < row; move++) {
+                        for (int move = 0; move < col; move++) {
                             if (move != city && (newCitys & (1 << move)) != 0) {
                                 min = Math.min(min, matrix[city][move] + dp[newCitys][move]);
                             }
