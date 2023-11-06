@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * @author gq.cai
  * @version 1.0
- * @description 3.7.2
+ * @description 3.7.2 累加和不能到达最小数字
  * 给定一个正数数组 arr，其中所有的值都为整数，以下是最小不可组成和的概念:
  * 把 arr 每个子集内的所有元素加起来会出现很多值，其中最小的记为 min，最大的记为max 在区间[min,max]上，如果有数不可以被arr某一个子集相加得到，
  * 那么其中最小的那个数是arr 的最小不可组成和 在区间[min,max]上，如果所有的数都可以被arr的某一个子集相加得到，那么max+1是arr的最 小不可组成和
