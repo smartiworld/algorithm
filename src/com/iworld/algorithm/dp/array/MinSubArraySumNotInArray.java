@@ -1,5 +1,7 @@
 package com.iworld.algorithm.dp.array;
 
+import com.iworld.algorithm.util.ArrayUtil;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,9 +41,7 @@ public class MinSubArraySumNotInArray {
     
     private static void getAllSubSum(int[] arr, Set<Integer> allSum, int index, int sum) {
         if (index == arr.length) {
-            if (sum != 0) {
-                allSum.add(sum);
-            }
+            allSum.add(sum);
             return ;
         }
         getAllSubSum(arr, allSum, index + 1, sum);
@@ -58,14 +58,40 @@ public class MinSubArraySumNotInArray {
         }
         int col = max - min + 1;
         // 记录0~i范围内 能拼出j和的状态 当前位置已经拼接出当前范围
+        // 列长度为col 实际范围为min~max 从0开始计算0~max-min
         boolean[][] dp = new boolean[len][col];
-        dp[0][arr[0]] = true;
+        dp[0][arr[0] - min] = true;
         for (int i = 1; i < len; i++) {
-            for (int j = min; j < col; j++) {
-                dp[i][j] = dp[i - 1][j] || (arr[i] == j) || (j - arr[i] > 0 && dp[i - 1][j - arr[i]]);
+            for (int j = min; j <= max; j++) {
+                dp[i][j - min] = dp[i - 1][j - min] || (arr[i] == j) || (j - arr[i] - min >= 0 && dp[i - 1][j - arr[i] - min]);
             }
         }
-        for (int j = min + 1; j < col; j++) {
+        for (int j = min + 1; j <= max; j++) {
+            if (!dp[len - 1][j - min]) {
+                return j;
+            }
+        }
+        return max + 1;
+    }
+    
+    public static int minSumDpUseAllCache(int[] arr) {
+        int min = arr[0];
+        int max = arr[0];
+        int len = arr.length;
+        for (int i = 1; i < len; i++) {
+            min = Math.min(min, arr[i]);
+            max += arr[i];
+        }
+        // 记录0~i范围内 能拼出j和的状态 当前位置已经拼接出当前范围
+        // 列长度为col 实际范围为min~max 从0开始计算0~max-min
+        boolean[][] dp = new boolean[len][max + 1];
+        dp[0][arr[0]] = true;
+        for (int i = 1; i < len; i++) {
+            for (int j = min; j <= max; j++) {
+                dp[i][j] = dp[i - 1][j] || (arr[i] == j) || (j - arr[i] >= 0 && dp[i - 1][j - arr[i]]);
+            }
+        }
+        for (int j = min + 1; j <= max; j++) {
             if (!dp[len - 1][j]) {
                 return j;
             }
@@ -74,8 +100,23 @@ public class MinSubArraySumNotInArray {
     }
     
     public static void main(String[] args) {
-        int[] arr = {3,2,5};
-        System.out.println(minSum(arr));
-        System.out.println(minSumDp(arr));
+        int len = 27;
+        int max = 30;
+        for (int i = 0; i < 100; i++) {
+            int[] arr = ArrayUtil.generateIntArray(len, max);
+            ArrayUtil.printArray(arr);
+            int i1 = minSum(arr);
+            int i2 = minSumDp(arr);
+            if (i1 != i2) {
+                System.out.println(i1 + "===" + i2);
+            }
+        }
+        int[] arr = {29,18,14,20,19,21,4,24,20,24,2,17,26,10,23,4,18,6,4,26,11,27,2,17,3,10,18};
+        int i1 = minSum(arr);
+        int i2 = minSumDp(arr);
+        int i3 = minSumDpUseAllCache(arr);
+        System.out.println(i1);
+        System.out.println(i2);
+        System.out.println(i3);
     }
 }
