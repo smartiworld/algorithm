@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * @author gq.cai
  * @version 1.0
- * @description 给定一个有序数组 从左向右依次表示x轴上的点的位置
+ * @description 3.1.1 给定一个有序数组 从左向右依次表示x轴上的点的位置
  * 给定一个正整数k表示右一根绳子长度为k，最多可以覆盖多少个点
  * @date 2022/11/8 16:57
  */
