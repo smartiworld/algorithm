@@ -103,6 +103,7 @@ public class ValidParentheses {
     }
     
     /**
+     * 严格每个种类对应
      * 比较优
      * 使用栈结构 遇到右边界入栈  value为右边界
      * 遇到右边界 检查栈中是否存在元素 如果不存在则失败 如果存在检查最后入栈是否为对应左边界 如果是继续匹配 否则失败
@@ -134,6 +135,42 @@ public class ValidParentheses {
             
         }
         return index == 0;
+    }
+    
+    /**
+     * 不区分顺序
+     * @param s
+     * @return
+     */
+    public boolean isValidNotOrder(String s) {
+        if (s.length() % 2 == 1) {
+            return false;
+        }
+        int n = s.length();
+        int smallCount = 0;
+        int midCount = 0;
+        int maxCount = 0;
+        for (int i = 0; i < n; i++) {
+            if (s.charAt(i) == '(') {
+                smallCount ++;
+            }
+            if (s.charAt(i) == '[') {
+                midCount ++;
+            }
+            if (s.charAt(i) == '{') {
+                maxCount ++;
+            }
+            if (s.charAt(i) == ')') {
+                smallCount --;
+            }
+            if (s.charAt(i) == ']') {
+                midCount --;
+            }
+            if (s.charAt(i) == '}') {
+                maxCount --;
+            }
+        }
+        return smallCount == 0 && midCount == 0 & maxCount == 0;
     }
     
     public static void main(String[] args) {
