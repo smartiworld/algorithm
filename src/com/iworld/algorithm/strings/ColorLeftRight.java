@@ -3,7 +3,7 @@ package com.iworld.algorithm.strings;
 /**
  * @author gq.cai
  * @version 1.0
- * @description
+ * @description 3.1.4
  * 一个字符串 每个字符代表一个正方形，每个正方形已经被染成红色或者绿色
  * 现在可以选择任意一个正方形用这两种颜色对字符串进行染色
  * 目标是完成染色之后每个红色R都比每个绿色G距离最左侧近 返回最少需要染色几个正方形
@@ -53,17 +53,33 @@ public class ColorLeftRight {
         int min = rCount;
         int gCount = 0;
         for (int i = 0; i < n; i++) {
-            min = Math.min(min, rCount + gCount);
             gCount += chars[i] == 'G' ? 1 : 0;
             rCount -= chars[i] == 'R' ? 1 : 0;
+            min = Math.min(min, rCount + gCount);
         }
         return min;
     }
     
     public static void main(String[] args) {
-        String test = "RGRGGR";
         ColorLeftRight colorLeftRight = new ColorLeftRight();
-        System.out.println(colorLeftRight.minPaint(test));
-        System.out.println(colorLeftRight.minPaint2(test));
+        int times = 1000;
+        for (int i = 0; i < times; i++) {
+            String s = randomGeneratorStr(20);
+            System.out.println(s);
+            int x = colorLeftRight.minPaint(s);
+            int x1 = colorLeftRight.minPaint2(s);
+            if (x != x1) {
+                System.out.println("x===" + x + "------x1===" + x1);
+            }
+        }
+        
+    }
+    
+    public static String randomGeneratorStr(int len) {
+        char[] chars = new char[len];
+        for (int i = 0; i < len; i++) {
+            chars[i] = (Math.random() < 0.5) ? 'R' : 'G';
+        }
+        return new String(chars);
     }
 }
