@@ -22,7 +22,7 @@ public class BinaryTreeMaximumPathSumAllKinds {
      * @param root
      * @return
      */
-    public static int maximumPathSumIncludeHead(TreeNode root) {
+    public static int maximumPathSumIncludeRoot(TreeNode root) {
         return maximumPathSumIncludeHeadProcess(root).maximumPathSum;
     }
     
@@ -46,6 +46,45 @@ public class BinaryTreeMaximumPathSumAllKinds {
         curPathSum += childMaximumPathSum;
         maximumPathSum = Math.max(maximumPathSum, curPathSum);
         return new TreeNodeInfo(maximumPathSum, curPathSum);
+    }
+    
+    private static int max = Integer.MIN_VALUE;
+    
+    public static int maximumPathSumIncludeRoot1(TreeNode root) {
+        maximumPathSumIncludeRoot1Process(root, 0);
+        return max;
+    }
+    
+    private static void maximumPathSumIncludeRoot1Process(TreeNode head, int pre) {
+        if (head.left == null && head.right == null) {
+            max = Math.max(max, head.val + pre);
+            return ;
+        }
+        if (head.left != null) {
+            maximumPathSumIncludeRoot1Process(head.left, pre + head.val);
+        }
+        if (head.right != null) {
+            maximumPathSumIncludeRoot1Process(head.right, pre + head.val);
+        }
+    }
+    
+    public static int maximumPathSumIncludeRoot2(TreeNode root) {
+        maximumPathSumIncludeRoot1Process(root, 0);
+        return max;
+    }
+    
+    private static int maximumPathSumIncludeRoot2Process(TreeNode head) {
+        if (head.left == null && head.right == null) {
+            return head.val;
+        }
+        int next = Integer.MIN_VALUE;
+        if (head.left != null) {
+            next = maximumPathSumIncludeRoot2Process(head.left);
+        }
+        if (head.right != null) {
+            next = Math.max(next, maximumPathSumIncludeRoot2Process(head.right));
+        }
+        return next + head.val;
     }
     
     public static class TreeNodeInfo {
@@ -138,6 +177,33 @@ public class BinaryTreeMaximumPathSumAllKinds {
         // 不包含当前节点 5.左最大和 6.右最大和
         int maximumPathSum = Math.max(head.val, Math.max(Math.max(leftHeadAndRightPathSum, Math.max(leftAndHeadPathSum, rightAndHeadPathSum)), Math.max(leftPathSum, rightPathSum)));;
         return new TreeNodeInfo(maximumPathSum, fromHeadMaximumPathSum);
+    }
+    
+    /**
+     * 4）路径可以从任何节点出发，必须到叶子节点，返回最大路径和
+     * @param root
+     * @return
+     */
+    public static int maximumPathSumNeedToLeaf(TreeNode root) {
+        maximumPathSumNeedToLeafProcess(root);
+        return max;
+    }
+    
+    public static int maximumPathSumNeedToLeafProcess(TreeNode head) {
+        if (head.left == null && head.right == null) {
+            max = Math.max(max, head.val);
+            return head.val;
+        }
+        int next = Integer.MIN_VALUE;
+        if (head.left != null) {
+            next = maximumPathSumNeedToLeafProcess(head.left);
+        }
+        if (head.right != null) {
+            next = Math.max(next, maximumPathSumNeedToLeafProcess(head.right));
+        }
+        int ans = next + head.val;
+        max = Math.max(ans, max);
+        return ans;
     }
     
 }
