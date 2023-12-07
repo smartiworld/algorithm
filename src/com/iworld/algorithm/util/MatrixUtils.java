@@ -1,5 +1,6 @@
 package com.iworld.algorithm.util;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -21,7 +22,24 @@ public class MatrixUtils {
         return matrix;
     }
     
-    public static void priceMatrix(int[][] matrix) {
+    public static int[][] generatorSortIntegerMatrix(int row, int col, int maxValue) {
+        int[][] matrix = new int[row][col];
+        Random r = new Random();
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (i == 0) {
+                    matrix[i][j] = r.nextInt(maxValue + 1);
+                } else {
+                    matrix[i][j] = r.nextInt(maxValue + 1) + matrix[i - 1][j];
+                }
+                
+            }
+            Arrays.sort(matrix[i]);
+        }
+        return matrix;
+    }
+    
+    public static void printMatrix(int[][] matrix) {
         int row = matrix.length;
         int col = matrix[0].length;
         System.out.println("{");

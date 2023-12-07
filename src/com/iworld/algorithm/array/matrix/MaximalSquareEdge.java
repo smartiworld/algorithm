@@ -149,7 +149,7 @@ public class MaximalSquareEdge {
             int m1 = maximalEdge(matrix);
             int m2 = maximalEdgeForce(matrix);
             if (m1 != m2) {
-                MatrixUtils.priceMatrix(matrix);
+                MatrixUtils.printMatrix(matrix);
                 System.out.println(m1 + "=====" + m2);
             }
         }
