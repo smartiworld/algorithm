@@ -241,6 +241,7 @@ public class TrappingRainWaterII {
             return 0;
         }
         int sum = 0;
+        // 记录当前位置围挡住的最小值
         int[][] help = new int[r][c];
         for (int i = 0; i < r; i++) {
             for (int j = 0; j < c; j++) {
@@ -251,10 +252,12 @@ public class TrappingRainWaterII {
         boolean init = true;
         while (update) {
             update = false;
+            // 当前位置记录 原数组左上最小值 和原数组当前位置最大值
             for (int i = 1 ; i < r - 1; i++) {
                 for (int j = 1; j < c - 1; j++) {
                     int minH = Math.min(help[i - 1][j], help[i][j - 1]);
                     int v = Math.max(minH, heightMap[i][j]);
+                    // 第二次后执行 并且小于当前位置值
                     if (init || v < help[i][j]) {
                         help[i][j] = v;
                         update = true;
@@ -262,10 +265,12 @@ public class TrappingRainWaterII {
                 }
             }
             init = false;
+            // 当前位置记录右下位置最小值并且和原数组位置取较大值 并且小于当前位置值
             for (int i = r - 2 ; i >= 1; i--) {
                 for (int j = c - 2; j >= 1; j--) {
                     int minH = Math.min(help[i + 1][j], help[i][j + 1]);
                     int v = Math.max(minH, heightMap[i][j]);
+                    // 只能记录比当前位置小的 才会可能存储到水
                     if (v < help[i][j]) {
                         help[i][j] = v;
                         update = true;
@@ -275,6 +280,7 @@ public class TrappingRainWaterII {
         }
         for (int i = 1; i < r - 1; i++) {
             for (int j = 1; j < c - 1; j++) {
+                // 计算可以存储的水量
                 if (help[i][j] - heightMap[i][j] > 0) {
                     sum += help[i][j] - heightMap[i][j];
                 }
