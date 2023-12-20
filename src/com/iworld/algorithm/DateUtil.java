@@ -58,6 +58,8 @@ public class DateUtil {
 	 * 日期格式化 yyyy-MM-dd HH:mm:ss
 	 */
 	public static final String DATE_SECOND_PATTERN = "yyyy-MM-dd HH:mm:ss";
+	
+	public final static String dateTimeSecondPointPattern = "yyyy-MM-dd HH:mm:ss.SSS";
 	/**
 	 * 年标记 y
 	 */
@@ -1264,6 +1266,104 @@ public class DateUtil {
 	public static boolean beforeNow(Date dateTime) {
 		Date now = new Date();
 		return dateTime.compareTo(now) == -1;
+	}
+	
+	private static void getWeekStartEnd1() {
+		String sDate = "2023-10-11";
+		Calendar c = Calendar.getInstance();
+		Date cur = DateUtil.dateString2Date(sDate);
+		c.setTime(cur);
+		Date startDate = null;
+		Date endDate = null;
+		if (c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+			endDate = c.getTime();
+			c.add(Calendar.DAY_OF_WEEK, -7);
+			startDate = c.getTime();
+		} else {
+			c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+			startDate = c.getTime();
+			c.add(Calendar.DAY_OF_WEEK, 7);
+			endDate = c.getTime();
+		}
+		System.out.println(DateUtil.date2String(startDate, DateUtil.DATE_SECOND_PATTERN));
+		System.out.println(DateUtil.date2String(endDate, DateUtil.DATE_SECOND_PATTERN));
+		Date weekEndDate = getWeekEndDate(cur);
+		System.out.println(DateUtil.date2String(weekEndDate, DateUtil.DATE_SECOND_PATTERN));
+	}
+	
+	public static void main(String[] args) {
+		String sDate = "2023-12-31 00:06:01";
+		Calendar c = Calendar.getInstance();
+		Date date = DateUtil.dateString2Date(sDate, DateUtil.DATE_SECOND_PATTERN);
+		c.setTime(date);
+		System.out.println(c.getWeeksInWeekYear());
+		System.out.println(DateUtil.date2String(getWeekStartDate(c.getTime())));
+		System.out.println(DateUtil.date2String(getWeekEndDate(c.getTime())));
+		
+		System.out.println(c.getWeeksInWeekYear());
+		System.out.println(c.get(Calendar.WEEK_OF_YEAR));
+		System.out.println();
+		
+		Calendar c2 = Calendar.getInstance();
+		c2.setTime(new Date());
+		int weeksInYear2 = c2.get(Calendar.WEEK_OF_YEAR);
+		System.out.println(weeksInYear2);
+		System.out.println();
+		System.out.println(getWeeks());
+	}
+	
+	public static Date getWeekStartDate(Date curDate) {
+		String dateStr = DateUtil.date2String(curDate);
+		Calendar c = Calendar.getInstance();
+		c.setTime(DateUtil.dateString2Date(dateStr));
+		Date startDate = null;
+		if (c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+			c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+			c.add(Calendar.DAY_OF_WEEK, -7);
+			startDate = c.getTime();
+		} else {
+			c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+			startDate = c.getTime();
+		}
+		return startDate;
+	}
+	
+	/**
+	 * 获取当前周结束时间
+	 * 周末
+	 * @param curDate
+	 * @return
+	 */
+	public static Date getWeekEndDate(Date curDate) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(curDate);
+		c.set(Calendar.HOUR_OF_DAY, 23);
+		c.set(Calendar.MINUTE, 59);
+		c.set(Calendar.SECOND, 59);
+		if (c.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+			c.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+			c.add(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+		}
+		return c.getTime();
+	}
+	
+	/**
+	 * startDates 开始时间
+	 * 当前时间从开始时间已经过了几周 从第一周开始累加
+	 * 开始时间可以随便从一个时间周一开始 从此时间后保证周次数唯一
+	 * @return
+	 */
+	public static int getWeeks() {
+		String startDates = "2023-12-25";
+		String endDates = "2024-01-01";
+		Date startDate = DateUtil.dateString2Date(startDates);
+		Date endDate = DateUtil.dateString2Date(endDates);
+		Calendar c = Calendar.getInstance();
+		c.setTime(startDate);
+		int diffDaysOfDate = getDiffDaysOfDate(startDate, endDate);
+		System.out.println(diffDaysOfDate);
+		int week = diffDaysOfDate / 7 + 1;
+		return week;
 	}
 
 }
