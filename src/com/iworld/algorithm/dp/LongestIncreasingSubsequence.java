@@ -53,6 +53,7 @@ public class LongestIncreasingSubsequence {
             int mid = l + ((r - l) >> 1);;
             while (l <= r) {
                 // 找出end数组中的值 mid位置>=当前位置并且 当前位置大于mid-1位置 此时找出离i最近下标
+                // 查找大于等于当前i位置值最左位置
                 if (nums[end[mid]] >= nums[i] && (mid == 0 || nums[end[mid - 1]] < nums[i])) {
                     break;
                 }
