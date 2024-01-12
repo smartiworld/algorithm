@@ -49,7 +49,7 @@ public class StrChangeTargetStr {
             for (int j = 1; j <= len2; j++) {
                 // str1 i位置字符和str2 j位置字符相等 当前代价和前代价相同
                 // 如果
-                if (chars1[i] == chars1[j]) {
+                if (chars1[i - 1] == chars1[j - 1]) {
                     dp[i][j] = dp[i - 1][j - 1];
                 } else {
                     dp[i][j] = dp[i - 1][j - 1] + rc;
