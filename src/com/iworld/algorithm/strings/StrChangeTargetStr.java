@@ -9,6 +9,45 @@ package com.iworld.algorithm.strings;
  * str1="abc"，str2="adc"，ic=5，dc=3，rc=2 从"abc"编辑成"adc"，把'b'替换成'd'是代价最小的，所以返回2
  * str1="abc"，str2="adc"，ic=5，dc=3，rc=100 从"abc"编辑成"adc"，先删除'b'，然后插入'd'是代价最小的，所以返回8
  * str1="abc"，str2="abc"，ic=5，dc=3，rc=2 不用编辑了，本来就是一样的字符串，所以返回0
+ *
+ * 72. Edit Distance
+ * Medium
+ * Topics
+ * Companies
+ * Given two strings word1 and word2, return the minimum number of operations required to convert word1 to word2.
+ *
+ * You have the following three operations permitted on a word:
+ *
+ * Insert a character
+ * Delete a character
+ * Replace a character
+ *
+ *
+ * Example 1:
+ *
+ * Input: word1 = "horse", word2 = "ros"
+ * Output: 3
+ * Explanation:
+ * horse -> rorse (replace 'h' with 'r')
+ * rorse -> rose (remove 'r')
+ * rose -> ros (remove 'e')
+ * Example 2:
+ *
+ * Input: word1 = "intention", word2 = "execution"
+ * Output: 5
+ * Explanation:
+ * intention -> inention (remove 't')
+ * inention -> enention (replace 'i' with 'e')
+ * enention -> exention (replace 'n' with 'x')
+ * exention -> exection (replace 'n' with 'c')
+ * exection -> execution (insert 'u')
+ *
+ *
+ * Constraints:
+ *
+ * 0 <= word1.length, word2.length <= 500
+ * word1 and word2 consist of lowercase English letters.
+ * https://leetcode.com/problems/edit-distance/description/
  * @date 2024/1/11 17:09
  */
 public class StrChangeTargetStr {
