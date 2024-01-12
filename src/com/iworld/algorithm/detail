@@ -63,7 +63,7 @@ GameOfLife         https://leetcode.com/problems/game-of-life/   游戏人生
 FindMedianFromDataStream   https://leetcode.com/problems/find-median-from-data-stream/  数据流中位数
 20221011
 SerializeAndDeserializeBinaryTree   https://leetcode.com/problems/serialize-and-deserialize-binary-tree/  序列化反序列化
-LongestIncreasingSubsequence     https://leetcode.com/problems/longest-increasing-subsequence/submissions/  最长递增子序列
+LongestIncreasingSubsequence     https://leetcode.com/problems/longest-increasing-subsequence/submissions/  3.4.4 最长递增子序列
 20221012
 CountOfSmallerNumbersAfterSelf    https://leetcode.com/problems/count-of-smaller-numbers-after-self/  返回数组右边小于自己数字个数
 CoinChange                   https://leetcode.com/problems/coin-change/    使用最少钱币数量拼凑给定金额
@@ -114,15 +114,15 @@ ImplementRand10UsingRand7  https://leetcode.com/problems/implement-rand10-using-
 JumpGameIIIFollow  跳跃游戏3 给定开始位置跳到结束位置
 JumpGameIII https://leetcode.com/problems/jump-game-iii/   跳跃游戏3 给定开始位置跳到index值为0的位置 宽度优先
 20221204
-ColorLeftRight    红绿调色使每个红色离左边都比绿色近 返回最小调色个数
+ColorLeftRight    3.1.4 红绿调色使每个红色离左边都比绿色近 返回最小调色个数
 20221206
-MakeNo    给定长度size 任意i<j<k 生成数组arr[i]+arr[k]!=arr[j]的数组
+MakeNo            3.1.6 给定长度size 任意i<j<k 生成数组arr[i]+arr[k]!=arr[j]的数组
 20221226
-TrappingRainWater  https://leetcode.com/problems/trapping-rain-water/   可以盛放多少雨水
-SegmentCoverPoint  线段覆盖最大点数量
+TrappingRainWater  https://leetcode.com/problems/trapping-rain-water/   3.2.4 一维数组盛放雨水
+SegmentCoverPoint  3.1.1 线段覆盖最大点数量
 SuperWashingMachines   https://leetcode.com/problems/super-washing-machines/  超级洗衣机
 20221230
-ChooseWork     选择最优报酬工作
+ChooseWork         3.3.1 选择最优报酬工作
 20230110
 CountCompleteTreeNodes    https://leetcode.com/problems/count-complete-tree-nodes/    计算完全二叉树节点个数 时间复杂度小于O(n)
 20230206
@@ -132,11 +132,11 @@ LongestNoRepeatSubstring  返回字符串中无重复字符最长字符串长度
 20230302
 DungeonGame               4.2.5 地下城游戏   https://leetcode.com/problems/dungeon-game/
 20230306
-SnakeGame                 贪吃蛇游戏
+SnakeGame                 4.5.2 贪吃蛇游戏
 20230307
-ExpressionCompute         计算字符串表达式
+ExpressionCompute         4.5.3 计算字符串表达式
 20230308
-SplitNumber               分裂数字 有多少种不同的分裂方式
+SplitNumber               4.6.1 分裂数字 有多少种不同的分裂方式
 20230313
 VisibleMountains          可见山峰对
 20230314
@@ -182,7 +182,7 @@ MissingNumber                  https://leetcode.com/problems/missing-number/    
 20230505
 NQueens                        https://leetcode.com/problems/n-queens/                                51.N皇后
 20230509
-TrappingRainWaterII            https://leetcode.com/problems/trapping-rain-water-ii/                  407.三维接雨水
+TrappingRainWaterII            https://leetcode.com/problems/trapping-rain-water-ii/                  407.三维接雨水  3.2.5 二维数组接雨水
 20230515
 LongestSubStrWithoutRepeating  https://leetcode.com/problems/longest-substring-without-repeating-characters/ 3.最长无重复字符子串
 20230524
@@ -191,6 +191,65 @@ KthSmallestElementInSortedMatrix  https://leetcode.com/problems/kth-smallest-ele
 RemoveBoxes                    https://leetcode.com/problems/remove-boxes/                            546.移除箱子最大得分
 20230610
 TSP                            旅行商问题
+20231101
+MonsterMoneyProblem            3.8.4 通过所有怪兽花费最小金钱
+20231106
+MinSortSubArrayLength          3.7.1 最小排序数组长度
+MinSubArraySumNotInArray       3.7.2 数组内累加和不能到达最小数字
+20231115
+UseMinSubArraySumAim           209 累加和大于等于target最小数组
+UseLeastNumSumAim              使用数组中最少元素累加出目标值
+20231127
+SingleParentheses              3.1.2 验证字符串括号
+ValidParentheses               20.按顺序校验多种括号对
+20231128
+NeedCountSumToAim              3.7.3 数据累加和达到1~aim所需最少数字
+20231129
+LongestValidParentheses        3.1.3 (32)最长有效括号
+20231201
+MaximalSquareEdge              3.1.5 最长正方形边长（内部可以为0）
+20231205
+BinaryTreeMaximumPathSumAllKinds 3.1.7 多种二叉树最大路径和
+20231207
+FindNumInSortedMatrix          3.2.1 排序矩阵中查找目标值
+20231208
+PackingMachine                 3.2.2 打包机器
+20231210
+MaxAbsoluteInArrayLeftRight    3.2.3 数组左右子数组最大值最大差值
+20231212
+SumToAimInArray                3.2.6 多数之和
+20231213
+PackageWays                    3.3.2 背包问题
+20231214
+KthSmallPair                   3.2.7 第k小数值对
+20231215
+MinPathSumInMatrix             3.3.3 矩阵最小路径和
+20231217
+LongestCommonSubsequence       3.3.4 (1143)两个字符的最长公共子序列
+20231219
+LongestCommonSubstring         3.3.4 两个字符的最长公共子串
+TopKTimesElements              3.3.5 词频最大的前K个字符串
+20231221
+TopRecord                      3.3.6 给一些字符串 返回top k
+FolderTree                     3.4.1 输出树形目录
+20231231
+GetBinaryTreePostArrayThrowPreAndInOrder  3.4.3 根据二叉树先序中序返回后续结果
+20230104
+MaxSumSubArray                 3.4.6 子数组的最大累加和
+20230105
+MaxCoverLetter                 3.4.5 最大嵌套信封
+20230108
+MaxSumSubMatrix                3.4.7 最大累加和子矩阵
+MaxSubMatrix                   面试题 17.24. 最大子矩阵
+20230109
+BinaryTreeConvertDoubleList    3.4.2 二叉树转换为双向连边
+20230111
+StrChangeTargetStr             3.5.2 最小编辑距离
+20230112
+BinaryTreeTotalNode            3.5.3 (222)完全二叉树节点个数
+
+
+
 
 【例子】
 S = "rabbbit", T = "rabbit"
@@ -203,11 +262,44 @@ I I I   I II
 rabbbit
 I I I I   IIhttps://leetcode.cn/problems/kth-largest-element-in-an-array/
 
-给定一个无序数组arr，返回如果排序之后，相邻数之间的最大差值
 
-{3,1,7,9}，如果排序后{1,3,7,9}，相邻数之间的最大差值来自3和7，返回4
 
-要求：不能真的进行排序，并且要求在时间复杂度O(N)内解决
+给定两个字符串s1和s2，问s2最少删除多少字符可以成为s1的子串？
+比如 s1 = "abcde"，s2 = "axbc"
+返回1。s2删掉'x'就是s1的子串了。
+
+
+
+
+求完全二叉树节点的个数
+要求时间复杂度低于O(N)
+
+
+LRU内存替换算法的实现
+
+
+给定两个字符串，记为start和to，再给定一个字符串列表list，list中一定包含to list中没有重复字符串，所有的字符串都是小写的。
+规定: start每次只能改变一个字符，最终的目标是彻底变成to，但是每次变成的新字符串必须在list 中存在。
+请返回所有最短的变换路径。
+【举例】
+start="abc",end="cab",list={"cab","acc","cbc","ccc","cac","cbb","aab","abb"}
+转换路径的方法有很多种，但所有最短的转换路径如下:
+abc -> abb -> aab -> cab
+abc -> abb -> cbb -> cab
+abc -> cbc -> cac -> cab
+abc -> cbc -> cbb -> cab
+
+
+输入参数：活动之间的依赖图，每个活动花费的天数、收益
+规定：如果选择参加某个活动，必须要根据依赖图做到最后一个活动
+
+再给定一个int[] arr，表示主播们依次拥有的天数，
+返回一个int[] ans，表示主播们能获得的最大收益
+
+
+
+
+
 
 
 
