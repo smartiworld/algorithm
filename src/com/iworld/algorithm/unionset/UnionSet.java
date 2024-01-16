@@ -67,10 +67,10 @@ public class UnionSet<V> {
     private Node<V> findParent(Node<V> x) {
         Node<V> parent = x;
         Stack<Node<V>> stack = new Stack<>();
-        while (parent != parentMap.get(x)) {
+        while (parent != parentMap.get(parent)) {
             // 将当前路径所有非父节点放入栈中
             stack.push(parent);
-            parent = parentMap.get(x);
+            parent = parentMap.get(parent);
         }
         // 将路径上所有节点的父节点直接执向父节点
         while (!stack.isEmpty()) {

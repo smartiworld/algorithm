@@ -67,10 +67,10 @@ public class UnionSetOpt<V> {
     private V findParent(V v) {
         V parent = v;
         Stack<V> stack = new Stack<>();
-        while (parent != parentMap.get(v)) {
+        while (parent != parentMap.get(parent)) {
             // 将当前路径所有非父节点放入栈中
             stack.push(parent);
-            parent = parentMap.get(v);
+            parent = parentMap.get(parent);
         }
         // 将路径上所有节点的父节点直接执向父节点
         while (!stack.isEmpty()) {
