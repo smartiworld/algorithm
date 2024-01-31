@@ -19,7 +19,7 @@ public class NeedCountSumToAim {
         int range = 0;
         int count = 0;
         for (int i = 0; i < arr.length; i++) {
-            // 当前范围
+            // 当前范围 range+1也就是要补的值 之前可以到达的范围为range 当前补了后可以达到的范围为range+range+1
             while (arr[i] - 1 > range) {
                 range += range + 1;
                 count ++;
