@@ -16,7 +16,7 @@ public class MinSortSubArrayLength {
     public static int getMinSortSubLength(int[] arr) {
         int len = arr.length;
         // 从左向右找最右不符合的位置 当前值记录i左侧最大值
-        int max = arr[1];
+        int max = arr[0];
         int rightIndex = -1;
         for (int i = 1; i < len; i++) {
             // 只要当前位置小于左边最大位置 说明当前位置不满足排序要求 是需要排序的 直到右边都满足大于左边最大位置
