@@ -63,6 +63,7 @@ public class MinSubArraySumNotInArray {
         dp[0][arr[0] - min] = true;
         for (int i = 1; i < len; i++) {
             for (int j = min; j <= max; j++) {
+                // j-min 位置 j是实际结果 所以arr[i] == j 判断i位置数字 是否可以得到j  i-1位置是否已经得到j， i-1位置是否已经得到j-arr[i]
                 dp[i][j - min] = dp[i - 1][j - min] || (arr[i] == j) || (j - arr[i] - min >= 0 && dp[i - 1][j - arr[i] - min]);
             }
         }
@@ -88,6 +89,7 @@ public class MinSubArraySumNotInArray {
         dp[0][arr[0]] = true;
         for (int i = 1; i < len; i++) {
             for (int j = min; j <= max; j++) {
+                // arr[i] == j 判断i位置数字 是否可以得到j  i-1位置是否已经得到j， i-1位置是否已经得到j-arr[i]
                 dp[i][j] = dp[i - 1][j] || (arr[i] == j) || (j - arr[i] >= 0 && dp[i - 1][j - arr[i]]);
             }
         }
@@ -104,11 +106,16 @@ public class MinSubArraySumNotInArray {
         int max = 30;
         for (int i = 0; i < 100; i++) {
             int[] arr = ArrayUtil.generateIntArray(len, max);
-            ArrayUtil.printArray(arr);
             int i1 = minSum(arr);
             int i2 = minSumDp(arr);
             if (i1 != i2) {
-                System.out.println(i1 + "===" + i2);
+                ArrayUtil.printArray(arr);
+                System.out.println("第一：" + i1 + "===" + i2);
+            }
+            int i3 = minSumDpUseAllCache(arr);
+            if (i1 != i3) {
+                ArrayUtil.printArray(arr);
+                System.out.println("第二：" + i1 + "===" + i2);
             }
         }
         int[] arr = {29,18,14,20,19,21,4,24,20,24,2,17,26,10,23,4,18,6,4,26,11,27,2,17,3,10,18};
