@@ -57,8 +57,8 @@ public class MergeSortedArray {
      */
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int r = nums1.length - 1;
-        int mm = m;
-        int nn = n;
+        int mm = m - 1;
+        int nn = n - 1;
         while (r >= 0) {
             if (nn == -1) {
                 break;
