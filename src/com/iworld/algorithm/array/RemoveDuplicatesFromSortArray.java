@@ -48,7 +48,7 @@ package com.iworld.algorithm.array;
  * https://leetcode.com/problems/remove-duplicates-from-sorted-array/
  * @date 2022/6/30 14:45
  */
-public class RemoveDuplicatesSortArray {
+public class RemoveDuplicatesFromSortArray {
     
     /**
      * @param nums
