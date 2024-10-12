@@ -58,6 +58,15 @@ public class RotateArray {
         }
     }
     
+    /**
+     * 旋转部分左右相等 直接用i和i+k位置做交换
+     * Input: nums = [1,2,3,4,5,6,7], k = 3
+     * Output: [5,6,7,1,2,3,4]
+     * 1.挑出k长度 将i和i+k 位置做交换 完成后面k长度位置替换 此时0~k-1已经完成 如果k和len-k长度相等 一步即可
+     * 2.处理k~len-1位置
+     * @param nums
+     * @param k
+     */
     public void rotate2(int[] nums, int k) {
         int length = nums.length;
         k = k % length;
@@ -66,11 +75,17 @@ public class RotateArray {
         }
         int l = 0;
         int r = length - 1;
+        // 左边长度
         int lpart = length - k;
+        // 右边长度
         int rpart = k;
+        // 每次需要处理的长度
         int same = Math.min(lpart, rpart);
+        // 下次需要处理的左或者右部分 如果为正数说明当前左边已经处理完毕 移动左指针 如果为负数说明右半部已经处理完毕 移动右指针 same表示已经处理好的部分
+        // diff 为0表示左右已经处理完毕
         int diff = lpart - rpart;
         exchange(nums, l, r, same);
+        // diff 左右长度是否相等
         while (diff != 0) {
             if (diff > 0) {
                 l += same;
@@ -109,11 +124,13 @@ public class RotateArray {
     
     public static void main(String[] args) {
         RotateArray rotateArray = new RotateArray();
-        int[] nums = {-1};
-        int k = 2;
-        rotateArray.rotate(nums, k);
+        int[] nums = {1,2,3,4,5,6,7};
+        int k = 5;
+        //rotateArray.rotate(nums, k);
+        rotateArray.rotate2(nums, k);
         for (int num : nums) {
             System.out.print(num + ",");
         }
+        System.out.println();
     }
 }
