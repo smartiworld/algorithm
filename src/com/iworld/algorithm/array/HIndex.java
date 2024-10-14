@@ -71,6 +71,7 @@ public class HIndex {
                 buckets[citation]++;
             }
         }
+        // 引用大于等于buckets[i]的总量
         int count = 0;
         for (int i = n; i >= 0; i--){
             // 计算桶中值
