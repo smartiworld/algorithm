@@ -35,6 +35,7 @@ import java.util.List;
  * n == ratings.length
  * 1 <= n <= 2 * 10^4
  * 0 <= ratings[i] <= 2 * 10^4
+ * https://leetcode.com/problems/candy
  * @date 2024/10/22 13:45
  */
 public class Candy {
@@ -241,6 +242,29 @@ public class Candy {
         return candies;
     }
     
+    public static int candyBestOpt(int[] ratings) {
+        int len = ratings.length;
+        if (len == 1) {
+            return 1;
+        }
+        int[] candy = new int[len];
+        // 默认每个位置最少1个
+        int ans = len;
+        for (int i = 1; i < len; i++) {
+            if (ratings[i] > ratings[i - 1] && candy[i] <= candy[i - 1]) {
+                candy[i] = candy[i - 1] + 1;
+            }
+        }
+        ans += candy[len - 1];
+        for (int i = len - 2; i >= 0; i--) {
+            if (ratings[i] > ratings[i + 1] && candy[i] <= candy[i + 1]) {
+                candy[i] = candy[i+ 1] + 1;
+            }
+            ans += candy[i];
+        }
+        return ans;
+    }
+    
     public static void main(String[] args) {
         int[] ratings = {1,2,3,5,4,3,2,1,4,3,2,1,3,2,1,1,2,3,4};
         Candy candy = new Candy();
@@ -248,6 +272,8 @@ public class Candy {
         System.out.println(candy.candy2(ratings));
         System.out.println(candy.candy3(ratings));
         candyOpt(ratings);
+        System.out.println(candyBest(ratings));
+        System.out.println(candyBestOpt(ratings));
     }
     
     
