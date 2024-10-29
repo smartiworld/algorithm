@@ -1,5 +1,8 @@
 package com.iworld.algorithm.strings;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author gq.cai
  * @version 1.0
@@ -58,7 +61,11 @@ package com.iworld.algorithm.strings;
  * @date 2022/11/15 23:40
  */
 public class RomanToInteger {
-    
+    /**
+     * 可以将IV看成一个整体处理 IV加4 IX加9 index走两个格
+     * @param s
+     * @return
+     */
     public int romanToInt(String s) {
         char[] chars = s.toCharArray();
         int len = chars.length;
@@ -100,9 +107,32 @@ public class RomanToInteger {
         return ans;
     }
     
+    public int romanToInt2(String s) {
+        Map<Character, Integer> romanToIntegerMap = new HashMap<>();
+        romanToIntegerMap.put('I', 1);
+        romanToIntegerMap.put('V', 5);
+        romanToIntegerMap.put('X', 10);
+        romanToIntegerMap.put('L', 50);
+        romanToIntegerMap.put('C', 100);
+        romanToIntegerMap.put('D', 500);
+        romanToIntegerMap.put('M', 1000);
+        char[] chars = s.toCharArray();
+        int n = chars.length;
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            if (i + 1 < n && romanToIntegerMap.get(chars[i]) < romanToIntegerMap.get(chars[i + 1])) {
+                ans -= romanToIntegerMap.get(chars[i]);
+            } else {
+                ans += romanToIntegerMap.get(chars[i]);
+            }
+        }
+        return ans;
+    }
+    
     public static void main(String[] args) {
         RomanToInteger romanToInteger = new RomanToInteger();
         String s = "MCMXCIV";
         System.out.println(romanToInteger.romanToInt(s));
+        System.out.println(romanToInteger.romanToInt2(s));
     }
 }
