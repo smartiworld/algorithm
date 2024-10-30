@@ -1,0 +1,38 @@
+Top interview 150
+ARRAY
+20220812
+JumpGame                                        https://leetcode.com/problems/jump-game/                                          55.跳跃游戏  只可以向前跳跃 是否可以跳到最后
+20221004
+ProductOfArrayExceptSelf                        https://leetcode.com/problems/product-of-array-except-self/                       238.除当前位置 数组中其他位置乘积
+20221019
+InsertDeleteGetRandom                           https://leetcode.com/problems/insert-delete-getrandom-o1/                         380.增加删除获取random val 时间复杂度O(1)
+20221116
+RomanToInteger                                  https://leetcode.com/problems/roman-to-integer/                                   13.罗马数字转换为数字
+IntegerToRoman                                  https://leetcode.com/problems/integer-to-roman/                                   12.数字转罗马数字
+20221127
+JumpGameII                                      https://leetcode.com/problems/jump-game-ii/                                       45.跳跃游戏2 开始位置跳到最后需要最少步数
+20221226
+TrappingRainWater                               https://leetcode.com/problems/trapping-rain-water/                                42.一维数组盛放雨水   3.2.4
+20230423
+MergeSortedArray                                https://leetcode.com/problems/merge-sorted-array/                                 88.合并两个排序数组到一个数组
+20230630
+RemoveDuplicatesFromSortArray                   https://leetcode.com/problems/remove-duplicates-from-sorted-array                 26.有序数组中移除重复元素
+20240718
+RemoveElement                                   https://leetcode.com/problems/remove-element                                      27.数组中删除指定元素
+20240725
+RemoveDuplicatesFromSortedArrayII               https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii              80.排序数组中最多保留两个相同元素
+20220903
+MajorityElement                                 https://leetcode.com/problems/majority-element/                                   169.找出数组中超过一半数量的数
+20220902
+RotateArray                                     https://leetcode.com/problems/rotate-array/                                       189.轮转数组
+20220928
+BestTimeToBuyAndSellStock                       https://leetcode.com/problems/best-time-to-buy-and-sell-stock/                    121.股票买卖  只能交易一次  卖一定在买后  4.2.1
+BestTimeToBuyAndSellStockII                     https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/                 122.股票买卖 可以做无限次交易   4.2.2
+20241014
+HIndex                                          https://leetcode.com/problems/h-index/                                            274.H 指数
+20241024
+Candy                                           https://leetcode.com/problems/candy                                               135.分配糖果        5.2.2
+20241027
+LengthOfLastWord                                https://leetcode.com/problems/length-of-last-word/                                58.最后字符长度
+20241030
+GasStation                                      https://leetcode.com/problems/gas-station/                                        134.加油站
