@@ -139,10 +139,41 @@ public class ReverseWordsInAString {
         
     }
     
+    private int reversedSize2(char[] text, char[] reverse, int index) {
+        int len = text.length;
+        if (index >= len) {
+            return 0;
+        }
+        while (index < len && text[index] == ' ') {
+            index++;
+        }
+        int endIndex = index;
+        while (endIndex < len && text[endIndex] != ' ') {
+            endIndex++;
+        }
+        int reverseIndex = reversedSize2(text, reverse, endIndex);
+        // reverseIndex > 0表示之前已经处理过字符 需要 放一个空格 然后再放字符
+        if (reverseIndex > 0) {
+            reverse[reverseIndex++] = ' ';
+        }
+        for (int i = index; i < endIndex; i++) {
+            reverse[reverseIndex++] = text[i];
+        }
+        return reverseIndex;
+    }
+    
+    public String reverseWordsBest2(String s) {
+        char[] text = s.toCharArray();
+        char[] reverse = new char[text.length];
+        int reverseIndex = reversedSize2(text, reverse, 0);
+        return new String(reverse, 0, reverseIndex);
+    }
+    
     public static void main(String[] args) {
         ReverseWordsInAString reverseWordsInAString = new ReverseWordsInAString();
         String s = "the sky is blue";
         System.out.println(reverseWordsInAString.reverseWords(s));
         System.out.println(reverseWordsInAString.reverseWordsLessSpace(s));
+        System.out.println(reverseWordsInAString.reverseWordsBest2(s));
     }
 }
