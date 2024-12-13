@@ -98,11 +98,44 @@ public class LongestSubStrWithoutRepeating {
         return longest;
     }
     
+    public int lengthOfLongestSubstring6(String s) {
+        char[] chars = s.toCharArray();
+        int len = chars.length;
+        int[] indexs = new int[255];
+        int longest = 0;
+        for (int i = 0, j = 0; i <= len; i++) {
+            if (i == len || indexs[chars[i]] > 0) {
+                longest = Math.max(longest, i - j);
+                if (i == len) {
+                    break;
+                }
+                j = Math.max(j, indexs[chars[i]]);
+            }
+            indexs[chars[i]] = i + 1;
+        }
+        return longest;
+    }
+    
+    public int lengthOfLongestSubstring8(String s) {
+        char[] chars = s.toCharArray();
+        int len = chars.length;
+        int[] indexs = new int[91];
+        int longest = 0;
+        for (int i = 0, j = 0; i < len; i++) {
+            j = Math.max(j, indexs[chars[i] - 32]);
+            longest = Math.max(longest, i - j + 1);
+            indexs[chars[i] - 32] = i + 1;
+        }
+        return longest;
+    }
+    
     public static void main(String[] args) {
         LongestSubStrWithoutRepeating subStrWithoutRepeating = new LongestSubStrWithoutRepeating();
         String s = "abba";
         System.out.println(subStrWithoutRepeating.lengthOfLongestSubstring(s));
         System.out.println(subStrWithoutRepeating.lengthOfLongestSubstring2(s));
         System.out.println(subStrWithoutRepeating.lengthOfLongestSubstring3(s));
+        System.out.println(subStrWithoutRepeating.lengthOfLongestSubstring6(s));
+        System.out.println(subStrWithoutRepeating.lengthOfLongestSubstring8(s));
     }
 }
