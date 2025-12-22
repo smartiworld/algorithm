@@ -44,13 +44,22 @@ import java.util.LinkedList;
  */
 public class SlidingWindowMaximum {
     
+    /**
+     * 滑动窗口，解决数组范围内最大最小值
+     * k长度子数组最大值 队列中保留数组最右位置最大值，如果相等记录最右位置相等值
+     * 队列顺序为降序，最左边为最大值，进入元素如果大于左边值，则将前值弹出，存放当前位置最大值
+     *  k长度子数组最小值 队列顺序为升序 最左边为最小值 升序排列，进入元素值小于左边值，则弹出左边小值
+     * @param nums
+     * @param k
+     * @return
+     */
     public int[] maxSlidingWindow(int[] nums, int k) {
         LinkedList<Integer> queue = new LinkedList<>();
         int n = nums.length;
         int[] ans = new int[n - k + 1];
         int index = 0;
         for (int i = 0; i < n; i++) {
-            // 如果放入下标值大于队尾值 则从队尾弹出  保证队列头部放的是最新的最大值
+            // 如果放入下标值大于队尾值 则从队尾弹出  保证队列最右（尾部）放的是最新的最大值
             while (!queue.isEmpty() && nums[queue.peekLast()] < nums[i]) {
                 queue.pollLast();
             }
