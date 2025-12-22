@@ -14,6 +14,7 @@ public class WindowDifference {
     
     /**
      * 满足条件潜台词 如果一个数组的最大值-数组最小值满足条件 则当前数组的子数组一定满足条件
+     * 子数组最大值一定小于等于数组上最大值，子数组最小值一定大于等于数组最小值，所以子数组最大值-子数组最小值 < 数组最大值-数组最小值
      * 如果一个数组不满足条件则以此数组为子数组的数组 一定不满足条件
      * @param arr
      * @param num
@@ -44,17 +45,19 @@ public class WindowDifference {
                     max.pollLast();
                 }
                 max.addLast(r);
+                // 当数组中最大值-最小值不满足要求的时候 右边界不在推进
                 if (arr[max.getFirst()] - arr[min.getFirst()] > num) {
                     break;
                 }
                 r ++;
             }
-            // 计算符合要求子数组
+            // 计算符合要求子数组 统计以l为开头的到r范围的所有满足条件的子数组
             count += r - l;
-            // l位置过期
+            // l位置过期 最小值头部如果是l位置 弹出不再使用 l右移
             if (min.getFirst() == l) {
                 min.pollFirst();
             }
+            // 最大值头部如果是l位置 弹出不再使用 l右移
             if (max.getFirst() == l) {
                 max.pollFirst();
             }
