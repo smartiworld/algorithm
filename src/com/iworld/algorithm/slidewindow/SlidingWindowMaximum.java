@@ -59,7 +59,7 @@ public class SlidingWindowMaximum {
         int[] ans = new int[n - k + 1];
         int index = 0;
         for (int i = 0; i < n; i++) {
-            // 如果放入下标值大于队尾值 则从队尾弹出  保证队列最右（尾部）放的是最新的最大值
+            // 如果放入下标值大于队尾值 则从队尾弹出  保证队列最左（头部）放的是最新的最大值  头到尾 降序 来的值大于尾部元素依次弹出
             while (!queue.isEmpty() && nums[queue.peekLast()] < nums[i]) {
                 queue.pollLast();
             }
